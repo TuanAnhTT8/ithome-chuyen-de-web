@@ -1,0 +1,21 @@
+/* F Group Custom Style Sheets
+DEV: Nguyen Thanh Tam
+Search Bar */
+
+#search-bar {
+    border-bottom: 1px solid #ccc;
+}
+
+#filter {
+    background-color: #203644;
+}
+
+#search-bar ul {
+    list-style: none;
+    flex-direction: row;
+}
+
+#search-bar ul li {
+    padding: 10px;
+    width: 100%;
+}

@@ -1,0 +1,25 @@
+/* F Group Custom Style Sheets
+DEV: Nguyen Thanh Tam
+Category */
+
+.cate-block {
+    padding: 10px 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 20px 0px;
+}
+
+.cate-block p {
+    font-weight: bold;
+}
+
+.cate-block ul {
+    list-style: none;
+}
+
+.cate-block ul li a,
+span {
+    text-decoration: none;
+    color: black;
+    font-weight: 300;
+}
