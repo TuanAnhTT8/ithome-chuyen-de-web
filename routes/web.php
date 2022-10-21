@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 Route::get('/home', function () {
     return view('home');
@@ -31,3 +31,14 @@ Route::get('/motel', function () {
 Route::get('/detail', function () {
     return view('detail');
 });
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/post', function () {
+    return view('newpost');
+});
+Route::get('/user', function () {
+    return view('user');
+});
+
+
