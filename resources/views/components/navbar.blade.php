@@ -20,10 +20,10 @@
           <a class="nav-link" href="/motel">Motel</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Post</a>
+          <a class="nav-link" href="/post">Post</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" href="/login">Login</a>
         </li>
       </ul>
     </div>
