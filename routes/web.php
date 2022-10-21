@@ -31,3 +31,14 @@ Route::get('/motel', function () {
 Route::get('/detail', function () {
     return view('detail');
 });
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/post', function () {
+    return view('newpost');
+});
+Route::get('/user', function () {
+    return view('user');
+});
+
+
