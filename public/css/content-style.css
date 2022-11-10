@@ -1,0 +1,55 @@
+/* F Group Custom Style Sheets
+DEV: Nguyen Thanh Tam
+Content */
+
+.house-list ul {
+    list-style: none;
+    border-left: 1px solid #ccc;
+}
+
+.house-list ul li {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.house-list .house-info ul {
+    flex-direction: row !important;
+    padding-left: 0px;
+    border-left: none;
+}
+
+.house-list .house-info ul li {
+    margin-right: 10px;
+    display: inline-block;
+    border-bottom: none;
+}
+
+.favourite i {
+    color: #eb4432;
+    margin: 0 auto;
+    transition: transform .2s ease;
+}
+
+.favourite i:hover {
+    transform: scale(1.5);
+}
+
+.upload-time {
+    position: relative;
+    padding-bottom: 16px;
+}
+
+.upload-time p {
+    margin-bottom: 0px;
+}
+
+.favourite {
+    position: absolute;
+    top: -16px;
+    right: 0;
+    background-color: #f0f2f5;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    font-size: 21px;
+}
