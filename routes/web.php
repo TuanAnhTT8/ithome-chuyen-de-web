@@ -40,5 +40,37 @@ Route::get('/post', function () {
 Route::get('/user', function () {
     return view('user');
 });
+/*
+********************************************************************
+*******************ROUTE Ở PHẦN GIAO DIỆN ADMIN********************
+********************************************************************
+*/
+Route::group(['module' => 'admin', 'middleware' => 'web', 'namespace' => "App\Http\Controllers"], function () {
+   
+
+
+    //  Route::group(['middleware' => ['auth']], function () {
+        Route::group(["prefix" => "admin"], function() {
+            //  Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+            // return view('dashboard');
+            // })->name('dashboard');
+        //Dashboard
+        Route::get("/", ["as" => "admin.dashboard.index", "uses" => "AdminController@getIndexAdmin"]);
+        
+        // });
+
+      
+
+    });
+    Route::group(["prefix" => "posts"], function() {
+        Route::get("/", ["as" => "admin.hotels", "uses" => "AdminController@getAllHotel"]);
+        Route::get("add", ["as" => "admin.hotels.add", "uses" => "AdminController@AddHotel"]);
+        Route::post("save", ["as" => "admin.hotels.add", "uses" => "AdminController@getSaveHotel"]);
+        Route::get("delete/{id}", ["as" => "admin.hotels.edit", "uses" => "AdminController@DeleteHotel"]);
+        Route::get("edit/{id}", ["as" => "admin.hotels.edit", "uses" => "AdminController@EditHotel"]);
+        Route::post("update/{id}", ["as" => "admin.hotels.eidt", "uses" => "AdminController@UpdateHotel"]);
+    });
+
+});
 
 
