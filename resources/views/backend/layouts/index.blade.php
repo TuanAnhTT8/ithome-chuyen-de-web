@@ -33,8 +33,18 @@
   <body class="nav-md">
   @include('backend.partial.header')
 
-  <div class="admin_welcome" style=""><h3>Welcome Admin</h3></div>
-
+  <div class="admin_welcome"><h3>Welcome Admin</h3></div>
+  
+  <div class="box-dashbord">
+      <div class="card-dashbord ">
+          <h2>34</h2>
+          <span>POST</span>
+      </div>
+      <div class="card-dashbord fix">
+          <h2>3</h2>
+          <span>USER</span>
+      </div>
+  </div>
   @include('backend.partial.footer')
  
   </body>

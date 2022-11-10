@@ -32,10 +32,10 @@
 
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Quản lí Hotel <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Quản lí bài đăng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    <li><a href="{{asset('hotels')}}">Danh sách Hotel</a></li>
-                      <li><a href="{{url('hotels/addhotel')}}">Thêm Hotel</a></li>
+                    <li><a href="{{asset('posts')}}">Danh sách bài đăng</a></li>
+                      <li><a href="{{url('hotels/addposts')}}">Thêm bài đăng</a></li>
     
 
 
