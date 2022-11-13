@@ -6,11 +6,17 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Key word, Road, Distric,..." aria-label="Search">
             </li>
             <li>
-                <select id="location" class="form-select" aria-label="Default select example">
+                <select id="province-select" class="form-select" aria-label="Default select example">
                 <option value="0" selected>All Province</option>
                     @foreach ($provinces as $province){
                         <option value="{{$province -> id}}">{{$province -> _name}}</option>
                     @endforeach                  
+                </select>
+            </li>
+            <li>
+                <select id="district-select" class="form-select" aria-label="Default select example">
+                <option value="0" selected>All Province</option>
+                                    
                 </select>
             </li>
             <li>
@@ -58,3 +64,4 @@
 
     </form>
 </div>
+<script src="./js/ajax.js"></script>
