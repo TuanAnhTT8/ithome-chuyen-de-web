@@ -1,0 +1,52 @@
+/* F Group Custom Style Sheets
+DEV: Tran Ly Thuy Tien
+Navbar */
+
+.navbar-dark {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.nav-item a {
+    text-transform: uppercase;
+}
+
+.nav-item {
+    padding: 0px 20px;
+}
+
+.nav-item a {
+    display: inline-block;
+    position: relative;
+    color: white;
+}
+
+.nav-item a:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-item .active {
+    color: black;
+    right: 0 !important;
+}
+
+.nav-item a:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.bg-navbg {
+    background-color: #203644;
+}
+
+#ithomelogo {
+    width: 30%;
+}
