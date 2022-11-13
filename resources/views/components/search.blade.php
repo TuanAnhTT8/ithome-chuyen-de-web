@@ -64,4 +64,3 @@
 
     </form>
 </div>
-<script src="./js/ajax.js"></script>

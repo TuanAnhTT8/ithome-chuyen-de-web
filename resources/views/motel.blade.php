@@ -27,5 +27,6 @@
     <script>
         alert(document.querySelector('#catrgory-filter').selected.innerHTML);
     </script>
+    <script src="./js/ajax.js"></script>
 </body>
 </html>
