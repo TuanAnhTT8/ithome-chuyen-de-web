@@ -35,7 +35,7 @@
                   <li><a><i class="fa fa-edit"></i> Quản lí bài đăng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     <li><a href="{{asset('posts')}}">Danh sách bài đăng</a></li>
-                      <li><a href="{{url('hotels/addposts')}}">Thêm bài đăng</a></li>
+                      
     
 
 

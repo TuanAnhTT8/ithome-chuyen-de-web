@@ -63,7 +63,7 @@ Route::group(['module' => 'admin', 'middleware' => 'web', 'namespace' => "App\Ht
 
     });
     Route::group(["prefix" => "posts"], function() {
-        Route::get("/", ["as" => "admin.hotels", "uses" => "AdminController@getAllHotel"]);
+        Route::get("/", ["as" => "admin.hotels", "uses" => "AdminController@getAllPost"]);
         Route::get("add", ["as" => "admin.hotels.add", "uses" => "AdminController@AddHotel"]);
         Route::post("save", ["as" => "admin.hotels.add", "uses" => "AdminController@getSaveHotel"]);
         Route::get("delete/{id}", ["as" => "admin.hotels.edit", "uses" => "AdminController@DeleteHotel"]);
