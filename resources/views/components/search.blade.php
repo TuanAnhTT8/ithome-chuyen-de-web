@@ -7,9 +7,10 @@
             </li>
             <li>
                 <select id="location" class="form-select" aria-label="Default select example">
-                    <option selected></i>All</option>
-                    <option value="1">TPHCM</option>
-                    <option value="2">Ha Noi</option>                   
+                <option value="0" selected>All Province</option>
+                    @foreach ($provinces as $province){
+                        <option value="{{$province -> id}}">{{$province -> _name}}</option>
+                    @endforeach                  
                 </select>
             </li>
             <li>

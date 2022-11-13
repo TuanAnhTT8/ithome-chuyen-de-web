@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\Province;
 
 class search extends Component
 {
@@ -23,6 +24,7 @@ class search extends Component
      */
     public function render()
     {
-        return view('components.search');
+        $provinces = Province::all();
+        return view('components.search',compact('provinces'));
     }
 }
