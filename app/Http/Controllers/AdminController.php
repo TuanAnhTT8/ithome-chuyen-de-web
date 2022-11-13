@@ -61,6 +61,12 @@ class AdminController extends Controller
         return Redirect::to('/login');
     }
     // Post
-  
+    public function getAllPost()
+    {
+        
+        //return view('backend.layouts.Hotel.AllHotels')->with('all_hotel', $all_hotel);
+        return view('backend.layouts.post.AllPost');
+    }
+    //End post
    
 }
