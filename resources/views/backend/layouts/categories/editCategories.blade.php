@@ -67,8 +67,22 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                @foreach($edit_hotel as $hotel)
-                                    <form class="" action="{{URL::to('/hotels/updatehotel/'.$hotel->hotel_id)}}" method="post" enctype="multipart/form-data">
+                                @foreach($edit_categories as $edit_categories)
+
+                                <?php 
+                                    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                                    $rand = rand(10000,99999);
+                                    $size = strlen( $chars );
+                                    $length = rand(1,30);
+                                    $str='';
+                                    for( $i = 0; $i <  $length; $i++ ) {
+                                    $str .= $chars[ rand( 0, $size - 1 ) ];
+                                    }
+                                    $str = substr( str_shuffle( $chars ), 0, $length );
+                                    $id_security = base64_encode($edit_categories['id']).'_'.$rand.'_'.$str;
+                                
+                                ?>
+                                    <form class="" action="{{URL::to('/categories/update/'.$id_security)}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <meta name="csrf-token" content="{{ csrf_token() }}">
                                         <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
@@ -78,80 +92,13 @@
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" value="{{$hotel->name}}" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Giày ...." required="required" />
+                                                <input class="form-control" value="{{$edit_categories->cate_name}}"  name="name_categories" placeholder="Giày ...." required="required" />
                                             </div>
                                         </div>
                                    
                                         
                                        
                                         
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Type name<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                            <select class="form-control" name="type" id="cate">
-                                                @foreach($type as $type)
-                                            <option value="{{$type->categories_id}}">{{$type->categories_name}}</option>
-                                           @endforeach
-                                            </select> *
-                                        </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Location<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                            <select class="form-control" name="location" id="cate">
-                                                @foreach($location as $location)
-                                            <option value="{{$location->location_id}}">{{$location->address}}</option>
-                                           @endforeach
-                                            </select> *
-                                        </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">person<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" value="{{$hotel->person}}" data-validate-length-range="6" data-validate-words="2" name="person" placeholder="...." required="required" />
-                                    </div>
-                                </div>
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Room<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" value="{{$hotel->room}}" data-validate-length-range="6" data-validate-words="2" name="room" placeholder="...." required="required" />
-                                    </div>
-                                </div>
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Service<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" value="{{$hotel->services}}" data-validate-length-range="6" data-validate-words="2" name="service" placeholder="...." required="required" />
-                                    </div>
-                                </div>
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Hotel infomation<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" value="{{$hotel->hotel_info}}" data-validate-length-range="6" data-validate-words="2" name="hotel_info" placeholder="...." required="required" />
-                                    </div>
-                                </div>
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Money in day<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" value="{{$hotel->money_day}}" data-validate-length-range="6" data-validate-words="2" name="money_day" placeholder="...." required="required" />
-                                    </div>
-                                </div>
-                                        
-                                        
-                                        
-                                        
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Image product<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="file" name="product_image"   />
-                                                <img src="/public/img/hotel/{{$hotel->image}}" height="100" width="100" alt="">
-                                            </div>
-                                            
-                                         
-                                               
-                                           
-                                           
-                                        </div>
-                                      
                                        
                                         <div class="ln_solid">
                                             <div class="form-group">
