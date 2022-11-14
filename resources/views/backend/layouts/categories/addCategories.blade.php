@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Thêm sản phẩm | Pos Coron! </title>
+    <title>Thêm Danh mục </title>
 
     <!-- Bootstrap -->
     <link href="{{ url('vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -29,7 +29,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Thêm Hotel</h3>
+                    <h3>Thêm Danh mục</h3>
                 </div>
 
                 <div class="title_right">
@@ -49,7 +49,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Thêm Hotel <small>sub title</small></h2>
+                            <h2>Thêm Danh mục <small>sub title</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -66,77 +66,19 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <form class="" action="{{URL::to('/hotels/savehotel')}}" method="post" enctype="multipart/form-data">
+                            <form class="" action="{{URL::to('/categories/save')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <meta name="csrf-token" content="{{ csrf_token() }}">
                                 <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
                                 </p>
-                                <span class="section">Thông tin Hotel</span>
+                                <span class="section">Thông tin Danh mục</span>
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Tên danh mục<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="...." required="required" />
+                                        <input class="form-control"  name="name_categories" placeholder="Tên danh mục" required="required" />
                                     </div>
                                 </div>
-                                <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Type name<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                            <select class="form-control" name="type" id="cate">
-                                                @foreach($type as $type)
-                                            <option value="{{$type->categories_id}}">{{$type->categories_name}}</option>
-                                           @endforeach
-                                            </select> *
-                                        </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Location<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                            <select class="form-control" name="location" id="cate">
-                                                @foreach($location as $location)
-                                            <option value="{{$location->location_id}}">{{$location->address}}</option>
-                                           @endforeach
-                                            </select> *
-                                        </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">person<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="person" placeholder="...." required="required" />
-                                    </div>
-                                </div>
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Room<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="room" placeholder="...." required="required" />
-                                    </div>
-                                </div>
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Service<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="service" placeholder="...." required="required" />
-                                    </div>
-                                </div>
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Hotel infomation<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="hotel_info" placeholder="...." required="required" />
-                                    </div>
-                                </div>
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Money in day<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="money_day" placeholder="...." required="required" />
-                                    </div>
-                                </div>
-                            
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Image product<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" type="file" name="product_image" />
-                                    </div>
-                                </div>
-
-
+                        
                                 <div class="ln_solid">
                                     <div class="form-group">
                                         <div class="col-md-6 offset-md-3">

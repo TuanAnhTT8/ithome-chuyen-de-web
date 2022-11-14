@@ -45,7 +45,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Quản lí sản phẩm <small>    </small></h3>
+                <h3>Danh mục sản phẩm <small>    </small></h3>
               </div>
 
               <div class="title_right">
@@ -66,7 +66,7 @@
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Danh sách Hotel </h2>
+                    <h2>Danh mục sản phẩm </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -92,17 +92,11 @@
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                        <th>ID</th>
-                        <th>Hình ảnh</th>
+                        <th>Mã danh mục</th>
+                        <th>Tên danh mục</th>
                          
-                          <th>Loại</th>
-                          <th>Tiêu đề</th>
-                          <th>Địa chỉ</th>
-                          <th>Số lượng nhà vệ sinh</th>
-                          <th>Số lượng phòng ngủ</th>
-                          <th>Giá</th>
-                          <th>Mô tả</th>
-                          <th style="width:50px;">Lựa chọn</th>
+                    
+                        <th style="width:50px;">Lựa chọn</th>
                           
                         </tr>
                       </thead>
@@ -114,30 +108,41 @@
                     ?>  
                          
                           <?php 
+                          foreach ($all_categories as $all_categories => $value) {
+                   
+                         
                          ?>
                         <tr>
-                     
+                  
                          
-                          <td> 1</td>
-                          <td><img src="./image/house1.jpg" height="100" width="100" alt=""></td>
+                          <td>{{$value['id']}}</td>
+                          <td>{{$value['cate_name']}}</td>
                           
-                          <td>Motel</td>
-                          <td>High end Apartment at Thu Duc City 1</td>
-                          <td>Quan 1, TPHCM</td>
-                          <td>2 phòng</td>
-                          <td>2 phòng</td>
-                          <td>5.000.000VND</td>
-                          <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, ea voluptatum est provident, minus dolore accusamus unde suscipit maiores, quis sequi amet sit illum inventore! Repudiandae nisi quidem numquam tempore.</td>
-                          <td >
-                          <div class="fa-hover col-md-3 col-sm-4  "><a href=""><i class="fa fa-wrench"></i></a>
+                          <td>
                             
-                              <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href=""><i class="fa fa-trash"></i></a>
+                            <?php 
+                            $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                            $rand = rand(10000,99999);
+                            $size = strlen( $chars );
+                            $length = rand(1,30);
+                            $str='';
+                            for( $i = 0; $i <  $length; $i++ ) {
+                              $str .= $chars[ rand( 0, $size - 1 ) ];
+                            }
+                            $str = substr( str_shuffle( $chars ), 0, $length );
+                            $id_security = base64_encode($value['id']).'_'.$rand.'_'.$str;
+                           
+                            ?>
+                          <div class="fa-hover col-md-3 col-sm-4  "><a href="/categories/edit/{{$id_security}}"><i class="fa fa-wrench"></i></a>
+                            
+                              <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="/categories/delete/{{$id_security}}"><i class="fa fa-trash"></i></a>
                         </div>
                          
                         </td>
                         </tr>
                         <?php
-        $stt++;
+                         }
+         $stt++;
         ?>
                         
                       </tbody>
