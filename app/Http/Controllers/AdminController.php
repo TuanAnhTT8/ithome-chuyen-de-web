@@ -21,45 +21,31 @@ use function Livewire\str;
 
 class AdminController extends Controller
 {
-    public function postLogin(Request $request)
-    {
-        $arr = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-        if ($request->remember == trans('remember.Remember Me')) {
-            $remember = true;
-        } else {
-            $remember = false;
-        }
-        //kiểm tra trường remember có được chọn hay không
-        
-        if (Auth::guard('loyal_customer')->attempt($arr)) {
-
-            dd('đăng nhập thành công');
-            //..code tùy chọn
-            //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
-        } else {
-
-            dd('tài khoản và mật khẩu chưa chính xác');
-            //...code tùy chọn
-            //đăng nhập thất bại hiển thị đăng nhập thất bại
-        }
-    }
+   
     
     public function getIndexAdmin()
     {
+        $admin_role = Auth::user()->role;
+        if($admin_role != 1)
+        {
+            return Redirect::to('/');
+        }
         return view('backend.layouts.index');
     }
-    public function LogoutAdmin()
+    public function logoutAdmin()
     {
+       
         Auth::logout();
         return Redirect::to('/login');
     }
     // Post
     public function getAllPost()
     {
-        
+        $admin_role = Auth::user()->role;
+        if($admin_role != 1)
+        {
+            return Redirect::to('/');
+        }
         //return view('backend.layouts.Hotel.AllHotels')->with('all_hotel', $all_hotel);
         return view('backend.layouts.post.AllPost');
     }
@@ -68,11 +54,11 @@ class AdminController extends Controller
     //Categories
     public function getAllCategories()
     {
-        // $admin_role = Auth::user()->role;
-        // if($admin_role != 1)
-        // {
-        //     return Redirect::to('/');
-        // }
+        $admin_role = Auth::user()->role;
+        if($admin_role != 1)
+        {
+            return Redirect::to('/');
+        }
         $all_categories = Category::all();
              
       
@@ -81,22 +67,22 @@ class AdminController extends Controller
 
     public function AddCategories(Request $request)
     {
-        // $admin_role = Auth::user()->role;
-        // if($admin_role != 1)
-        // {
-        //     return Redirect::to('/');
-        // }
+        $admin_role = Auth::user()->role;
+        if($admin_role != 1)
+        {
+            return Redirect::to('/');
+        }
         
         return view('backend.layouts.categories.AddCategories');
     } 
 
     public function getSaveCategories(Request $request)
     {
-        // $admin_role = Auth::user()->role;
-        // if($admin_role != 1)
-        // {
-        //     return Redirect::to('/');
-        // }
+        $admin_role = Auth::user()->role;
+        if($admin_role != 1)
+        {
+            return Redirect::to('/');
+        }
 
     
         $categories = new Category;

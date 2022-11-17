@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/home', function () {
-    return view('home');
-});
+
 Route::get('/apartment', function () {
     return view('apartment');
 });
@@ -31,15 +28,20 @@ Route::get('/motel', function () {
 Route::get('/detail', function () {
     return view('detail');
 });
-Route::get('/login', function () {
-    return view('login');
-});
+
 Route::get('/post', function () {
     return view('newpost');
 });
 Route::get('/user', function () {
     return view('user');
 });
+
+//Login route
+Route::get('/login',[UserController::class, 'getLogin']);
+Route::post('/login',[UserController::class, 'postLogin']);
+Route::get('/',[UserController::class, 'index']);
+Route::get('/logout',[UserController::class, 'LogoutAdmin']);
+//endlogin
 /*
 ********************************************************************
 *******************ROUTE Ở PHẦN GIAO DIỆN ADMIN********************
