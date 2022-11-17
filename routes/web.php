@@ -39,6 +39,8 @@ Route::get('/user', function () {
 //Login route
 Route::get('/login',[UserController::class, 'getLogin']);
 Route::post('/login',[UserController::class, 'postLogin']);
+Route::get('/register',[UserController::class, 'getRegister']);
+Route::post('/register',[UserController::class, 'postRegister']);
 Route::get('/',[UserController::class, 'index']);
 Route::get('/logout',[UserController::class, 'LogoutAdmin']);
 //endlogin

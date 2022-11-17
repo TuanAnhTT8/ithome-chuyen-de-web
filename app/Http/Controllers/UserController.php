@@ -62,6 +62,47 @@ class UserController extends Controller
             //đăng nhập thất bại hiển thị đăng nhập thất bại
         }
     }
+    public function getRegister()
+    {
+        
+        if(Auth::check())
+        {
+            return Redirect::to('/');
+        }
+        return view('register');
+    }
+    public function postRegister(Request $request)
+    {
+        $arr = [
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+        
+        $check = User::where('email',$arr['email'])->get();
+        
+        
+        if(count($check) > 0)
+        {
+            return Redirect::to('/register')->with([ "message" => "Email đã tồn tại không thể đăng ký tài khoản!"]);;
+        }
+        
+        $user = new User;
+        $user->username = $request->username;
+        $user->name = $request->username;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role = 2;
+        $user->save();
+        
+        
+       
+       
+        
+        return Redirect::to('/login')->with([ "message" => "Đăng ký thành công!"]);;
+        
+     
+    }
     
 
     /**
