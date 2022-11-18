@@ -31,9 +31,11 @@ async function LoadDistricts(id) {
     const response = await fetch(url);
     //console.log(response.json());
     const result = await response.json();
-    console.log(result);
+
     district_select.innerHTML = `<option value="0" selected>All District</option>`;
     result.forEach(element => {
-        district_select.innerHTML += `<option value="` + element.id + `" >` + element._name + `</option>`;
+        district_select.innerHTML += `<option value="` + element.id + `" >` + element._prefix + ` ` + element._name + `</option>`;
     })
 }
+
+//category

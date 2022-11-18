@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Province;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
@@ -23,7 +26,15 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::check())
+        {
+            $provinces = Province::all();
+            return view('newpost')->with('provinces',$provinces);
+        }
+        else{
+           return Redirect::to('/login');
+        }
+    
     }
 
     /**

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,7 @@ Route::get('/detail', function () {
     return view('detail');
 });
 
-Route::get('/post', function () {
-    return view('newpost');
-});
+
 Route::get('/user', function () {
     return view('user');
 });
@@ -43,6 +42,8 @@ Route::get('/register',[UserController::class, 'getRegister']);
 Route::post('/register',[UserController::class, 'postRegister']);
 Route::get('/',[UserController::class, 'index']);
 Route::get('/logout',[UserController::class, 'LogoutAdmin']);
+Route::get('/post',[PostController::class, 'create']);
+Route::post('/post',[PostController::class, 'store']);
 //endlogin
 /*
 ********************************************************************

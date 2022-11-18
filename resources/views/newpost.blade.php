@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/newpost-style.css">
+
 </head>
 
 <body>
@@ -21,45 +22,44 @@
         <form action="">
             <div class="category-selector">
                 <label class="form-label" for="category-select">Category</label>
-                <select id="category-select" class="form-select" aria-label="Default select example">
-                    <option selected></i>Hotel</option>
-                    <option value="1">House</option>
-                    <option value="2">Apartment</option>
+                <select id="category-select" name="category" class="form-select" aria-label="Default select example">
+                    <option value="0">---Select category---</option>
+                    <option value="1">Motel</option>
+                    <option value="2">House</option>
+                    <option value="3">Apartment</option>
                 </select>
 
             </div>
             <div class="form-outline mb-4 title">
                 <label class="form-label" for="form3Example3">Title</label>
-                <input type="username" id="form3Example3" class="form-control form-control-lg" placeholder="Enter user name" />
+                <input type="text" name="title" id="form3Example3" class="form-control form-control-lg" placeholder="Title" />
 
             </div>
             <div class="image-upload">
                 <label class="form-label" for="customFile">Choose your pictures</label>
-                <input type="file" class="form-control" id="customFile" />
+                <input type="file" name="img_file[]" class="form-control" id="customFile" />
 
             </div>
             <div class="location-picker">
                 <div class="location location-item">
-                    <label class="form-label" for="category-select">Location</label>
-                    <select id="category-select" class="form-select" aria-label="Default select example">
-                        <option selected></i>TPHCM</option>
-                        <option value="1">Ha Noi</option>
-                        <option value="2">Quang Nam</option>
+                <label class="form-label" for="category-select">Location</label>
+                    <select id="province-select" name="province" class="form-select" aria-label="Default select example">
+                        @foreach ($provinces as $province){
+                        <option value="{{$province -> id}}">{{$province -> _name}}</option>
+                        @endforeach      
+                      
                     </select>
 
                 </div>
                 <div class="distric location-item">
-                    <label class="form-label" for="category-select">Distric</label>
-                    <select id="category-select" class="form-select" aria-label="Default select example">
-                        <option selected></i>Quan 1</option>
-                        <option value="1">Quan 2</option>
-                        <option value="2">Quan 3</option>
+                <label class="form-label" for="category-select">Distric</label>
+                    <select id="district-select" name="district" class="form-select" aria-label="Default select example">
+                        
                     </select>
-
                 </div>
                 <div class="address form-outline mb-4 location-item">
                     <label class="form-label" for="form3Example3">Address</label>
-                    <input type="username" id="form3Example3" class="form-control form-control-lg" placeholder="Enter user name" />
+                    <input type="text" id="form3Example3" name="address" class="form-control form-control-lg" placeholder="Address" />
 
                 </div>
             </div>
@@ -78,7 +78,7 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         No
                     </label>
@@ -87,29 +87,37 @@
                 <div class="house-stat-item">
                 <div class="restroom-amount">
                     <label class="form-label" for="price">Restroom Amount</label>
-                    <input type="number" id="restroom" class="form-control form-control-lg" placeholder="" />
+                    <input type="number" id="restroom" name="restroom" class="form-control form-control-lg" placeholder="" />
                 </div>
                 </div>
                 <div class="house-stat-item">
                 <div class="bedroom-amount">
                     <label class="form-label" for="price">Bedroom Amount</label>
-                    <input type="number" id="bedroom" class="form-control form-control-lg" placeholder="" />
+                    <input type="number" id="bedroom" name="bedroom" class="form-control form-control-lg" placeholder="" />
+                </div>
+                </div>
+                <div class="house-stat-item">
+                <div class="bedroom-amount">
+                    <label class="form-label" for="price">Area</label>
+                    <input type="number" name="area" id="area" class="form-control form-control-lg" placeholder="" />
                 </div>
                 </div>
             </div>
             <div class="price">
                 <label class="form-label" for="price">Price</label>
-                <input type="number" id="price" class="form-control form-control-lg" placeholder="" />
+                <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="price" name="price" class="form-control form-control-lg" placeholder="" />
             </div>
             <div class="additional-information">
                 <label for="additional-info" class="form-label">Additional Infomation</label>
-                <textarea class="form-control" id="additional-info" rows="10"></textarea>
+                <textarea class="form-control" id="additional-info" name="description" rows="10"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" data-dismiss="modal">Post</button>
 
         </form>
     </div>
     <x-footer></x-footer>
+    <script src="./js/ajax.js"></script>
 </body>
+
 
 </html>

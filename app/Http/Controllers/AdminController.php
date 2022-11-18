@@ -25,12 +25,20 @@ class AdminController extends Controller
     
     public function getIndexAdmin()
     {
-        $admin_role = Auth::user()->role;
-        if($admin_role != 1)
+        if(Auth::check())
         {
-            return Redirect::to('/');
+            $admin_role = Auth::user()->role;
+            if($admin_role != 1)
+            {
+                return Redirect::to('/');
+            }
+            return view('backend.layouts.index');
         }
-        return view('backend.layouts.index');
+        else{
+            return Redirect::to('/login');
+      
+        }
+       
     }
     public function logoutAdmin()
     {
