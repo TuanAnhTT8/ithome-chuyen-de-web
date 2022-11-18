@@ -20,6 +20,18 @@
                 </select>
             </li>
             <li>
+                <select id="ward-select" class="form-select" aria-label="Default select example">
+                <option value="0" selected>All Ward</option>
+                                    
+                </select>
+            </li>
+            <li>
+                <select id="street-select" class="form-select" aria-label="Default select example">
+                <option value="0" selected>All Street</option>
+                                    
+                </select>
+            </li>
+            <li>
                 <select id="category-filter" class="form-select" aria-label="Default select example">
                     <option selected></i>Hotel</option>
                     <option value="1">House</option>

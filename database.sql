@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 13, 2022 at 05:12 AM
+-- Generation Time: Nov 15, 2022 at 08:03 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -24,21 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `address`
---
-
-CREATE TABLE `address` (
-  `id` int(11) NOT NULL,
-  `_province_id` int(11) NOT NULL,
-  `_district_id` int(11) NOT NULL,
-  `_ward_id` int(11) NOT NULL,
-  `_street_id` int(11) NOT NULL,
-  `address_number` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `categories`
 --
 
@@ -47,6 +32,15 @@ CREATE TABLE `categories` (
   `cate_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `cate_name`) VALUES
+(1, 'Apartment'),
+(2, 'Motel'),
+(3, 'House');
+
 -- --------------------------------------------------------
 
 --
@@ -54,6 +48,7 @@ CREATE TABLE `categories` (
 --
 
 CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
   `_user_id` int(11) NOT NULL,
   `_post_id` int(11) NOT NULL,
   `comment_content` varchar(300) NOT NULL
@@ -790,22 +785,91 @@ INSERT INTO `districts` (`id`, `_name`, `_prefix`, `_province_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `house`
+-- Table structure for table `houses`
 --
 
-CREATE TABLE `house` (
-  `house_id` int(100) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+CREATE TABLE `houses` (
+  `id` int(100) NOT NULL,
+  `_category_id` int(11) NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `area` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `furniture` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bedroom_amount` int(11) NOT NULL,
+  `restroom_amount` int(11) NOT NULL,
+  `furniture` int(11) DEFAULT NULL,
   `_province_id` int(11) NOT NULL,
   `_district_id` int(11) NOT NULL,
   `_ward_id` int(11) NOT NULL,
-  `_street_id` int(11) NOT NULL
+  `_street_id` int(11) NOT NULL,
+  `address_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `houses`
+--
+
+INSERT INTO `houses` (`id`, `_category_id`, `description`, `price`, `img`, `area`, `bedroom_amount`, `restroom_amount`, `furniture`, `_province_id`, `_district_id`, `_ward_id`, `_street_id`, `address_number`) VALUES
+(1, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 1, 1, 1, '30/10B'),
+(2, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 1, 2, 2, '56/3A'),
+(3, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 1, 3, 3, 'Số 826'),
+(4, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 2, 1, 1, '30/10B'),
+(5, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 2, 2, 2, '56/3A'),
+(6, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 2, 3, 3, 'Số 826'),
+(7, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 3, 1, 1, '30/10B'),
+(8, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 3, 2, 2, '56/3A'),
+(9, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 3, 3, 3, 'Số 826'),
+(10, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 4, 1, 1, '30/10B'),
+(11, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 4, 2, 2, '56/3A'),
+(12, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 4, 3, 3, 'Số 826'),
+(13, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 5, 1, 1, '30/10B'),
+(14, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 5, 2, 2, '56/3A'),
+(15, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 5, 3, 3, 'Số 826'),
+(16, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 6, 1, 1, '30/10B'),
+(17, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 6, 2, 2, '56/3A'),
+(18, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 6, 3, 3, 'Số 826'),
+(19, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 7, 1, 1, '30/10B'),
+(20, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 7, 2, 2, '56/3A'),
+(21, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 7, 3, 3, 'Số 826'),
+(22, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 8, 1, 1, '30/10B'),
+(23, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 8, 2, 2, '56/3A'),
+(24, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 8, 3, 3, 'Số 826'),
+(25, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 9, 1, 1, '30/10B'),
+(26, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 9, 2, 2, '56/3A'),
+(27, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 9, 3, 3, 'Số 826'),
+(28, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 10, 1, 1, '30/10B'),
+(29, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 10, 2, 2, '56/3A'),
+(30, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 1, 10, 3, 3, 'Số 826'),
+(31, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 1, 1, 1, '30/10B'),
+(32, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 1, 2, 2, '56/3A'),
+(33, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 1, 3, 3, 'Số 826'),
+(34, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 2, 1, 1, '30/10B'),
+(35, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 2, 2, 2, '56/3A'),
+(36, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 2, 3, 3, 'Số 826'),
+(37, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 3, 1, 1, '30/10B'),
+(38, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 3, 2, 2, '56/3A'),
+(39, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 3, 3, 3, 'Số 826'),
+(40, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 4, 1, 1, '30/10B'),
+(41, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 4, 2, 2, '56/3A'),
+(42, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 4, 3, 3, 'Số 826'),
+(43, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 5, 1, 1, '30/10B'),
+(44, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 5, 2, 2, '56/3A'),
+(45, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 5, 3, 3, 'Số 826'),
+(46, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 6, 1, 1, '30/10B'),
+(47, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 6, 2, 2, '56/3A'),
+(48, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 6, 3, 3, 'Số 826'),
+(49, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 7, 1, 1, '30/10B'),
+(50, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 7, 2, 2, '56/3A'),
+(51, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 7, 3, 3, 'Số 826'),
+(52, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 8, 1, 1, '30/10B'),
+(53, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 8, 2, 2, '56/3A'),
+(54, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 8, 3, 3, 'Số 826'),
+(55, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 9, 1, 1, '30/10B'),
+(56, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 9, 2, 2, '56/3A'),
+(57, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 9, 3, 3, 'Số 826'),
+(58, 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 25000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 10, 1, 1, '30/10B'),
+(59, 2, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 4000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 10, 2, 2, '56/3A'),
+(60, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 10000000, 'house1.jpg;house2.jpg;house3.jpg;house4.jpg;house5.jpg', '50', 0, 0, 1, 2, 10, 3, 3, 'Số 826');
 
 -- --------------------------------------------------------
 
@@ -829,8 +893,8 @@ CREATE TABLE `posts` (
   `house_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `post_title` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_description` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL
+  `post_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -917,10 +981,10 @@ INSERT INTO `provinces` (`id`, `_name`, `_code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `street`
+-- Table structure for table `streets`
 --
 
-CREATE TABLE `street` (
+CREATE TABLE `streets` (
   `id` int(10) UNSIGNED NOT NULL,
   `_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `_prefix` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -929,10 +993,10 @@ CREATE TABLE `street` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `street`
+-- Dumping data for table `streets`
 --
 
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (1, '1', 'Đường', 1, 1),
 (2, '10', 'Đường', 1, 1),
 (3, '10A', 'Đường', 1, 1),
@@ -2527,7 +2591,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (1592, 'Nguyễn Phong Sắc', 'Đường', 1, 5),
 (1593, 'Nguyễn Phú Trú', 'Đường', 1, 5),
 (1594, 'Nguyễn Thị Chì', 'Đường', 1, 5);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (1595, 'Nguyễn Thị Dạng', 'Đường', 1, 5),
 (1596, 'Nguyễn Thị Hai', 'Đường', 1, 5),
 (1597, 'Nguyễn Thị Hẹ', 'Đường', 1, 5),
@@ -3968,7 +4032,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (3032, 'Vạn Kiếp', 'Phố', 1, 9),
 (3033, 'Vũ Huy Tấn', 'Đường', 1, 9),
 (3034, '15B', 'Đường', 1, 10);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (3035, '3A', 'Đường', 1, 10),
 (3036, 'Alexandre', 'Đường', 1, 10),
 (3037, 'Bà Huyện Thanh Quan', 'Phố', 1, 10),
@@ -5373,7 +5437,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (4436, 'Trịnh Khắc Lập', 'Đường', 1, 14),
 (4437, 'Trúc Đường', 'Đường', 1, 14),
 (4438, 'Trương Gia Mô', 'Đường', 1, 14);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (4439, 'Trương Văn Bang', 'Đường', 1, 14),
 (4440, 'Trương Văn Đa', 'Đường', 1, 14),
 (4441, 'Vạn Kiếp', 'Phố', 1, 14),
@@ -6910,7 +6974,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (5972, 'Lạc Thiên', 'Đường', 1, 21),
 (5973, 'Lâm Viên', 'Đường', 1, 21),
 (5974, 'Làng Tăng Phú', 'Đường', 1, 21);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (5975, 'Lê Duẩn', 'Đường', 1, 21),
 (5976, 'Lê Lợi', 'Đường', 1, 21),
 (5977, 'Lê Thánh Tôn', 'Đường', 1, 21),
@@ -8358,7 +8422,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (7419, 'Trung Tựu', 'Đường', 2, 27),
 (7420, 'Văn Tiến Dũng', 'Đường', 2, 27),
 (7421, 'Vân Trì', 'Đường', 2, 27);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (7422, 'Văn Trì', 'Đường', 2, 27),
 (7423, 'Văn Trì 2', 'Đường', 2, 27),
 (7424, 'Võ Qúy Huân', 'Đường', 2, 27),
@@ -9771,7 +9835,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (8831, 'Nguyễn Văn Cừ', 'Đường', 2, 39),
 (8832, 'Nguyễn Văn Hưởng', 'Đường', 2, 39),
 (8833, 'Nguyễn Văn Linh', 'Đường', 2, 39);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (8834, 'Nguyệt Quế', 'Đường', 2, 39),
 (8835, 'Nguyệt Quế 1', 'Đường', 2, 39),
 (8836, 'Nguyệt Quế 10', 'Đường', 2, 39),
@@ -11144,7 +11208,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (10203, 'Hàn Thuyên', 'Đường', 3, 56),
 (10204, 'Hồ Biểu Chánh', 'Đường', 3, 56),
 (10205, 'Hồ Nghinh', 'Đường', 3, 56);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (10206, 'Hồ Nguyên Trừng', 'Đường', 3, 56),
 (10207, 'Hồ Tông Thốc', 'Đường', 3, 56),
 (10208, 'Hồ Xuân Hương', 'Đường', 3, 56),
@@ -12464,7 +12528,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (11522, 'An Hải Bắc 2', 'Đường', 3, 61),
 (11523, 'An Hải Bắc 3', 'Đường', 3, 61),
 (11524, 'An Hải Bắc 4', 'Đường', 3, 61);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (11525, 'An Hải Bắc 5', 'Đường', 3, 61),
 (11526, 'An Hải Bắc 6', 'Đường', 3, 61),
 (11527, 'An Hải Bắc 7', 'Đường', 3, 61),
@@ -13880,7 +13944,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (12937, 'ĐT 843B', 'Đường', 4, 66),
 (12938, 'Dương Đình Cúc', 'Đường', 4, 66),
 (12939, 'Đường L', 'Đường', 4, 66);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (12940, 'E', 'Đường', 4, 66),
 (12941, 'F', 'Đường', 4, 66),
 (12942, 'G', 'Đường', 4, 66),
@@ -15332,7 +15396,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (14388, 'Bình Hòa 23', 'Đường', 4, 70),
 (14389, 'Bình Hòa 24', 'Đường', 4, 70),
 (14390, 'Bình Hoà 25', 'Đường', 4, 70);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (14391, 'Bình Hòa 26', 'Đường', 4, 70),
 (14392, 'Bình Hòa 3', 'Đường', 4, 70),
 (14393, 'Bình Hòa 4', 'Đường', 4, 70),
@@ -16716,7 +16780,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (15771, 'Kim Đồng', 'Đường', 6, 85),
 (15772, 'Tỉnh lộ 654', 'Đường', 6, 85),
 (15773, '2', 'Đường', 6, 86);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (15774, '2/8', 'Đường', 6, 86),
 (15775, '8', 'Đường', 6, 86),
 (15776, 'Đà Lạt', 'Đường', 6, 86),
@@ -18120,7 +18184,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (17174, 'Nguyễn Công Hòa', 'Phố', 7, 101),
 (17175, 'Nguyễn Công Trứ', 'Đường', 7, 101),
 (17176, 'Nguyễn Đức Cảnh', 'Đường', 7, 101);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (17177, 'Nguyên Hồng', 'Đường', 7, 101),
 (17178, 'Nguyễn Sơn Hà', 'Đường', 7, 101),
 (17179, 'Nguyễn Tất Tố', 'Phố', 7, 101),
@@ -19464,7 +19528,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (18517, 'Lê Đình Dương', 'Đường', 9, 135),
 (18518, 'Lê Đình Thám', 'Đường', 9, 135),
 (18519, 'Lê Lợi', 'Đường', 9, 135);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (18520, 'Lê Ngọc Hân', 'Đường', 9, 135),
 (18521, 'Lê Phụng Hiểu', 'Phố', 9, 135),
 (18522, 'Lê Quý Đôn', 'Đường', 9, 135),
@@ -20744,7 +20808,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (19796, 'Xô Viết Nghệ Tĩnh', 'Đường', 11, 149),
 (19797, 'Xuân Diệu', 'Đường', 11, 149),
 (19798, 'Y Bhin', 'Đường', 11, 149);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (19799, 'Y Bih Aleo', 'Đường', 11, 149),
 (19800, 'Y Jut', 'Đường', 11, 149),
 (19801, 'Y Khu', 'Đường', 11, 149),
@@ -22054,7 +22118,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (21105, 'Trần Quang Khải', 'Đường', 14, 185),
 (21106, 'Trần Quốc Toản', 'Đường', 14, 185),
 (21107, 'Trần Quý Cáp', 'Đường', 14, 185);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (21108, 'Trần Thái Tông', 'Đường', 14, 185),
 (21109, 'Trần Văn Côi', 'Đường', 14, 185),
 (21110, 'Trạng Trình', 'Đường', 14, 185),
@@ -23308,7 +23372,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (22358, 'Nguyễn Gia Thiều', 'Đường', 17, 217),
 (22359, 'Nguyễn Giản Thanh', 'Đường', 17, 217),
 (22360, 'Nguyễn Hữu Huân', 'Đường', 17, 217);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (22361, 'Nguyễn Hữu Nghiêm', 'Đường', 17, 217),
 (22362, 'Nguyễn Huy Tưởng', 'Đường', 17, 217),
 (22363, 'Nguyễn Nhân Kính', 'Đường', 17, 217),
@@ -24605,7 +24669,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (23654, 'Cao Xuân Huy', 'Đường', 20, 285),
 (23655, 'Chu Văn An', 'Đường', 20, 285),
 (23656, 'Cù Chính Lan', 'Đường', 20, 285);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (23657, 'Cửa Hội', 'Đường', 20, 285),
 (23658, 'Đại lộ Thăng Long', 'Đường', 20, 285),
 (23659, 'Đặng Nguyên Cẩn', 'Đường', 20, 285),
@@ -25873,7 +25937,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (24921, 'Nguyễn Lương Bằng', 'Đường', 24, 328),
 (24922, 'Nguyễn Phong Sắc', 'Đường', 24, 328),
 (24923, 'Nguyễn Thiện Thuật', 'Phố', 24, 328);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (24924, 'Nguyễn Trãi', 'Đường', 24, 328),
 (24925, 'Nguyễn Trung Ngạn', 'Đường', 24, 328),
 (24926, 'Nguyễn Văn Côn', 'Đường', 24, 328),
@@ -27157,7 +27221,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (26204, 'Chi Lăng', 'Đường', 29, 379),
 (26205, 'Cù Chính Lan', 'Đường', 29, 379),
 (26206, 'Điện Biên Phủ', 'Đường', 29, 379);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (26207, 'Đinh Tiên Hoàng', 'Đường', 29, 379),
 (26208, 'Đoàn Thị Điểm', 'Đường', 29, 379),
 (26209, 'Hai Bà Trưng', 'Phố', 29, 379),
@@ -28417,7 +28481,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (27463, 'Tỉnh lộ 287', 'Đường', 33, 421),
 (27464, '263', 'Đường', 33, 422),
 (27465, '3', 'Đường', 33, 422);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (27466, '37', 'Phố', 33, 422),
 (27467, 'Quốc lộ 1B', 'Đường', 33, 422),
 (27468, 'Quốc lộ 3', 'Đường', 33, 422),
@@ -29698,7 +29762,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (28743, 'Lê Văn Tâm', 'Đường', 40, 491),
 (28744, 'Lưu Văn Liệt', 'Đường', 40, 491),
 (28745, 'Lý Thường Kiệt', 'Phố', 40, 491);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (28746, 'Mậu Thân', 'Đường', 40, 491),
 (28747, 'Ngô Quyền', 'Đường', 40, 491),
 (28748, 'Nguyễn Chí Thanh', 'Đường', 40, 491),
@@ -30968,7 +31032,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (30012, 'Võ Thị Sáu', 'Đường', 48, 566),
 (30013, 'Xẻo Cạy', 'Đường', 48, 566),
 (30014, '3/2', 'Đường', 48, 567);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (30015, '30/4', 'Đường', 48, 567),
 (30016, 'An Dương Vương', 'Đường', 48, 567),
 (30017, 'Bà Triệu', 'Phố', 48, 567),
@@ -32233,7 +32297,7 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 (31276, 'Trần Bình Trọng', 'Đường', 56, 640),
 (31277, 'Trần Đức Sắc', 'Đường', 56, 640),
 (31278, 'Trần Hưng Đạo', 'Đường', 56, 640);
-INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
+INSERT INTO `streets` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VALUES
 (31279, 'Trần Nguyên Hãn', 'Phố', 56, 640),
 (31280, 'Trần Phú', 'Đường', 56, 640),
 (31281, 'Trần Quang Khải', 'Đường', 56, 640),
@@ -32604,12 +32668,12 @@ INSERT INTO `street` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
-  `uid` int(40) NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+CREATE TABLE `users` (
+  `id` int(40) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -43939,6 +44003,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `districts`
 --
 ALTER TABLE `districts`
@@ -43946,10 +44016,10 @@ ALTER TABLE `districts`
   ADD KEY `_province_id` (`_province_id`);
 
 --
--- Indexes for table `house`
+-- Indexes for table `houses`
 --
-ALTER TABLE `house`
-  ADD PRIMARY KEY (`house_id`);
+ALTER TABLE `houses`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `posts`
@@ -43964,17 +44034,17 @@ ALTER TABLE `provinces`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `street`
+-- Indexes for table `streets`
 --
-ALTER TABLE `street`
+ALTER TABLE `streets`
   ADD PRIMARY KEY (`id`),
   ADD KEY `_province_id` (`_province_id`,`_district_id`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `users`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`uid`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `wards`
@@ -43991,6 +44061,12 @@ ALTER TABLE `wards`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -44000,10 +44076,10 @@ ALTER TABLE `districts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=710;
 
 --
--- AUTO_INCREMENT for table `house`
+-- AUTO_INCREMENT for table `houses`
 --
-ALTER TABLE `house`
-  MODIFY `house_id` int(100) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `houses`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -44018,16 +44094,16 @@ ALTER TABLE `provinces`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT for table `street`
+-- AUTO_INCREMENT for table `streets`
 --
-ALTER TABLE `street`
+ALTER TABLE `streets`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31645;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `user`
-  MODIFY `uid` int(40) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `wards`
