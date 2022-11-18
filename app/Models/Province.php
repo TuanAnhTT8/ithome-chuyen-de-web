@@ -11,4 +11,10 @@ class Province extends Model
     public function districts(){
         return $this -> hasMany(District::class);
     }
+    public function wards(){
+        return $this -> hasMany(Ward::class);
+    }
+    public function houses(){
+        return $this -> hasMany(House::class,'_province_id','id');
+    }
 }

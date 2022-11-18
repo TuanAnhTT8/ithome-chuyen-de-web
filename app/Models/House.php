@@ -11,4 +11,10 @@ class House extends Model
     public function categories(){
         return $this -> belongsTo(Category::class);
     }
+    public function post(){
+        return  $this->belongsTo(Post::class);
+    }
+    public function province(){
+        return  $this->belongsTo(Province::class,'_province_id','id');
+    }
 }
