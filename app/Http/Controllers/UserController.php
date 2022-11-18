@@ -3,9 +3,108 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; //use thư viện auth
+use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+
+    public function username()
+    {
+        return 'username';
+    }
+    public function getLogin()
+    {
+        
+        if(Auth::check())
+        {
+            return Redirect::to('/');
+        }
+        return view('login');
+    }
+    public function logoutAdmin()
+    {
+       
+        Auth::logout();
+        return Redirect::to('/login');
+    }
+    public function postLogin(Request $request)
+    {
+        $arr = [
+            'username' => $request->username,
+            'password' => $request->password,
+        ];
+        
+        if ($request->remember == trans('remember.Remember Me')) {
+            $remember = true;
+        } else {
+            $remember = false;
+        }
+        //kiểm tra trường remember có được chọn hay không
+        
+        if (Auth::guard('web')->attempt($arr)) {
+           
+            if(Auth::user()->role == 1)
+            {
+                return Redirect::to('/admin');
+            }
+            else{
+                return Redirect::to('/');
+            }
+            
+            //..code tùy chọn
+            //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
+        } else {
+
+            return Redirect::to('/login')->with('msg','Đăng nhập thất bại');
+            //...code tùy chọn
+            //đăng nhập thất bại hiển thị đăng nhập thất bại
+        }
+    }
+    public function getRegister()
+    {
+        
+        if(Auth::check())
+        {
+            return Redirect::to('/');
+        }
+        return view('register');
+    }
+    public function postRegister(Request $request)
+    {
+        $arr = [
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+        
+        $check = User::where('email',$arr['email'])->get();
+        
+        
+        if(count($check) > 0)
+        {
+            return Redirect::to('/register')->with([ "message" => "Email đã tồn tại không thể đăng ký tài khoản!"]);;
+        }
+        
+        $user = new User;
+        $user->username = $request->username;
+        $user->name = $request->username;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role = 2;
+        $user->save();
+        
+        
+       
+       
+        
+        return Redirect::to('/login')->with([ "message" => "Đăng ký thành công!"]);;
+        
+     
+    }
+    
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +112,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('home');
     }
 
     /**

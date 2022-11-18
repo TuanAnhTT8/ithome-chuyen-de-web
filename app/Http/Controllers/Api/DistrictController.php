@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Province;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-
-class PostController extends Controller
+use App\Models\District;
+use Illuminate\Http\Response;
+class DistrictController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,25 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        if(Auth::check())
-        {
-            $provinces = Province::all();
-            return view('newpost')->with('provinces',$provinces);
-        }
-        else{
-           return Redirect::to('/login');
-        }
-    
+       
     }
 
     /**
@@ -56,18 +37,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $district = District::where('_province_id',$id)
+        ->get();
+        return response()->json($district, Response::HTTP_OK);
     }
 
     /**

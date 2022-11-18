@@ -25,7 +25,7 @@
     </div>
     
     <x-footer></x-footer>
-    
+    <script src="./js/ajax.js"></script>
 </body>
 
 </html>

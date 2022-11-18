@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Sản phẩm | Pos Coron!</title>
+    <title>Bài đăng | ITHome!</title>
 
     <!-- Bootstrap -->
     <link href="{{ url('cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css')}}">
@@ -45,7 +45,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Quản lí sản phẩm <small>    </small></h3>
+                <h3>Danh mục sản phẩm <small>    </small></h3>
               </div>
 
               <div class="title_right">
@@ -66,7 +66,7 @@
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Danh sách Hotel </h2>
+                    <h2>Danh mục sản phẩm </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -92,13 +92,11 @@
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                        <th>Image</th>
-                       
-                          <th>Name</th>
-                          <th>Type</th>
-                          <th>Status</th>
+                        <th>Mã danh mục</th>
+                        <th>Tên danh mục</th>
                          
-                          <th style="width:50px;"></th>
+                    
+                        <th style="width:50px;">Lựa chọn</th>
                           
                         </tr>
                       </thead>
@@ -107,34 +105,49 @@
                       <tbody>
                       <?php
                         $stt = 1;
-                      ?>
-                          @foreach($all_hotel as $hotel )
-                          <?php $key = rand(111111111,999999999);
-                          
+                    ?>  
+                         
+                          <?php 
+                          foreach ($all_categories as $all_categories => $value) {
+                   
+                         
                          ?>
                         <tr>
-                        <!-- <td>{{ $loop->index + 1 }}</td> -->
-                          <td><img src="img/hotel/{{$hotel->image}}" height="100" width="100" alt=""></td>
-                       
-                          <td> {{$hotel->name}}</td>
-                          <td>{{$hotel->categories_name}}</td>
-                          <td>{{$hotel->status}}</td>
+                  
                          
-                          <td >
-                          <div class="fa-hover col-md-3 col-sm-4  "><a href="{{URL::to('/hotels/edithotel/'.$key.$hotel->hotel_id)}}"><i class="fa fa-wrench"></i></a>
+                          <td>{{$value['id']}}</td>
+                          <td>{{$value['cate_name']}}</td>
+                          
+                          <td>
                             
-                              <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="{{URL::to('/hotels/deletehotel/'.$key.$hotel->hotel_id)}}"><i class="fa fa-trash"></i></a>
+                            <?php 
+                            $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                            $rand = rand(10000,99999);
+                            $size = strlen( $chars );
+                            $length = rand(1,30);
+                            $str='';
+                            for( $i = 0; $i <  $length; $i++ ) {
+                              $str .= $chars[ rand( 0, $size - 1 ) ];
+                            }
+                            $str = substr( str_shuffle( $chars ), 0, $length );
+                            $id_security = base64_encode($value['id']).'_'.$rand.'_'.$str;
+                           
+                            ?>
+                          <div class="fa-hover col-md-3 col-sm-4  "><a href="/categories/edit/{{$id_security}}"><i class="fa fa-wrench"></i></a>
+                            
+                              <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="/categories/delete/{{$id_security}}"><i class="fa fa-trash"></i></a>
                         </div>
                          
                         </td>
                         </tr>
                         <?php
-        $stt++;
+                         }
+         $stt++;
         ?>
-                        @endforeach
+                        
                       </tbody>
                     </table>
-                    {{ $all_hotel->links() }}
+                 
                   </div>
                   </div>
               </div>

@@ -3,7 +3,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="{{asset('hotels')}}" class="site_title"><i class="fa fa-paw"></i> <span>Pos Coron!</span></a>
+              <a href="{{asset('/admin')}}" class="site_title"><i class="fa fa-paw"></i> <span>ITHome!</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -28,14 +28,14 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{asset('hotels')}}">Dashboard</a></li>
+                      <li><a href="{{asset('/admin')}}">Dashboard</a></li>
 
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Quản lí bài đăng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     <li><a href="{{asset('posts')}}">Danh sách bài đăng</a></li>
-                      <li><a href="{{url('hotels/addposts')}}">Thêm bài đăng</a></li>
+                      
     
 
 

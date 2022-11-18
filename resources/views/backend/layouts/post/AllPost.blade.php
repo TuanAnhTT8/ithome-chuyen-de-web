@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Sản phẩm | Pos Coron!</title>
+    <title>Bài đăng | ITHome!</title>
 
     <!-- Bootstrap -->
     <link href="{{ url('cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css')}}">
@@ -92,13 +92,17 @@
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                        <th>Image</th>
-                       
-                          <th>Name</th>
-                          <th>Type</th>
-                          <th>Status</th>
+                        <th>ID</th>
+                        <th>Hình ảnh</th>
                          
-                          <th style="width:50px;"></th>
+                          <th>Loại</th>
+                          <th>Tiêu đề</th>
+                          <th>Địa chỉ</th>
+                          <th>Số lượng nhà vệ sinh</th>
+                          <th>Số lượng phòng ngủ</th>
+                          <th>Giá</th>
+                          <th>Mô tả</th>
+                          <th style="width:50px;">Lựa chọn</th>
                           
                         </tr>
                       </thead>
@@ -107,23 +111,27 @@
                       <tbody>
                       <?php
                         $stt = 1;
-                      ?>
-                          @foreach($all_hotel as $hotel )
-                          <?php $key = rand(111111111,999999999);
-                          
+                    ?>  
+                         
+                          <?php 
                          ?>
                         <tr>
-                        <!-- <td>{{ $loop->index + 1 }}</td> -->
-                          <td><img src="img/hotel/{{$hotel->image}}" height="100" width="100" alt=""></td>
-                       
-                          <td> {{$hotel->name}}</td>
-                          <td>{{$hotel->categories_name}}</td>
-                          <td>{{$hotel->status}}</td>
+                     
                          
+                          <td> 1</td>
+                          <td><img src="./image/house1.jpg" height="100" width="100" alt=""></td>
+                          
+                          <td>Motel</td>
+                          <td>High end Apartment at Thu Duc City 1</td>
+                          <td>Quan 1, TPHCM</td>
+                          <td>2 phòng</td>
+                          <td>2 phòng</td>
+                          <td>5.000.000VND</td>
+                          <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, ea voluptatum est provident, minus dolore accusamus unde suscipit maiores, quis sequi amet sit illum inventore! Repudiandae nisi quidem numquam tempore.</td>
                           <td >
-                          <div class="fa-hover col-md-3 col-sm-4  "><a href="{{URL::to('/hotels/edithotel/'.$key.$hotel->hotel_id)}}"><i class="fa fa-wrench"></i></a>
+                          <div class="fa-hover col-md-3 col-sm-4  "><a href=""><i class="fa fa-wrench"></i></a>
                             
-                              <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="{{URL::to('/hotels/deletehotel/'.$key.$hotel->hotel_id)}}"><i class="fa fa-trash"></i></a>
+                              <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href=""><i class="fa fa-trash"></i></a>
                         </div>
                          
                         </td>
@@ -131,10 +139,10 @@
                         <?php
         $stt++;
         ?>
-                        @endforeach
+                        
                       </tbody>
                     </table>
-                    {{ $all_hotel->links() }}
+                 
                   </div>
                   </div>
               </div>
