@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class House extends Model
 {
     use HasFactory;
-    public function categories(){
-        return $this -> belongsTo(Category::class);
+    public function category(){
+        return $this -> belongsTo(Category::class,'_category_id','id');
     }
+   
+
+
 }

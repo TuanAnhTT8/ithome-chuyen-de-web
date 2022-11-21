@@ -19,7 +19,7 @@ class UserController extends Controller
         
         if(Auth::check())
         {
-            return Redirect::to('/');
+            return Redirect::to('/')->with('msg','Currently logged in ');
         }
         return view('login');
     }
@@ -27,7 +27,7 @@ class UserController extends Controller
     {
        
         Auth::logout();
-        return Redirect::to('/login');
+        return Redirect::to('/login')->with('msg','Logout successfully ');
     }
     public function postLogin(Request $request)
     {
@@ -47,17 +47,17 @@ class UserController extends Controller
            
             if(Auth::user()->role == 1)
             {
-                return Redirect::to('/admin');
+                return Redirect::to('/admin')->with('msg','Login successfully ');
             }
             else{
-                return Redirect::to('/');
+                return Redirect::to('/')->with('msg','Login successfully ');
             }
             
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
         } else {
 
-            return Redirect::to('/login')->with('msg','Đăng nhập thất bại');
+            return Redirect::to('/login')->with('msg','Account not exist!! ');
             //...code tùy chọn
             //đăng nhập thất bại hiển thị đăng nhập thất bại
         }
@@ -84,7 +84,7 @@ class UserController extends Controller
         
         if(count($check) > 0)
         {
-            return Redirect::to('/register')->with([ "message" => "Email đã tồn tại không thể đăng ký tài khoản!"]);;
+            return Redirect::to('/register')->with([ "message" => "Email exist!"]);;
         }
         
         $user = new User;
@@ -99,7 +99,7 @@ class UserController extends Controller
        
        
         
-        return Redirect::to('/login')->with([ "message" => "Đăng ký thành công!"]);;
+        return Redirect::to('/login')->with([ "message" => "Register Successfully!"]);;
         
      
     }
