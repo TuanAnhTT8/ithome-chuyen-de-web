@@ -17,24 +17,27 @@ use App\Http\Controllers\PostController;
 */
 
 
+Route::get('/', function () {
+    return view('home',['cate_id' => 0]);
+});
+Route::get('/home', function () {
+    return view('home',['cate_id' => 0]);
+});
 Route::get('/apartment', function () {
-    return view('apartment');
+    return view('apartment',['cate_id' => 1]);
 });
 Route::get('/house', function () {
-    return view('house');
+    return view('house',['cate_id' => 3]);
 });
 Route::get('/motel', function () {
-    return view('motel');
-});
-Route::get('/detail', function () {
-    return view('detail');
+    return view('motel',['cate_id' => 2]);
 });
 
 
 Route::get('/user', function () {
     return view('user');
 });
-
+Route::get('/posts/{id}', [HouseController::class, 'viewPost'])->name('house.viewPost');
 //Login route
 Route::get('/login',[UserController::class, 'getLogin']);
 Route::post('/login',[UserController::class, 'postLogin']);

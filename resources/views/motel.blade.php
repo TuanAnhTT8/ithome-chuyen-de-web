@@ -19,7 +19,7 @@
         <x-search></x-search>
         <div style="padding:10px 0px" class="row">
             <x-category></x-category>
-            <x-content></x-content>
+            <x-content :id="$cate_id"></x-content>
         </div>
         
     </div>

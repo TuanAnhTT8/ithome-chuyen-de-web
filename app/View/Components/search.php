@@ -25,6 +25,6 @@ class search extends Component
     public function render()
     {
         $provinces = Province::all();
-        return view('components.search',compact('provinces'));
+        return view('components.search',['provinces' => $provinces]);
     }
 }
