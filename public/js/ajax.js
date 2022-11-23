@@ -10,12 +10,12 @@ favourite.forEach(element => {
     })
 });
 
-const houseitem = document.querySelectorAll('.house-item');
-houseitem.forEach(element => {
-    element.addEventListener('click', (e) => {
-        window.location = 'detail';
-    })
-});
+// const houseitem = document.querySelectorAll('.house-item');
+// houseitem.forEach(element => {
+//     element.addEventListener('click', (e) => {
+//         window.location = 'detail';
+//     })
+// });
 
 var province_select = document.getElementById('province-select');
 var district_select = document.getElementById('district-select');

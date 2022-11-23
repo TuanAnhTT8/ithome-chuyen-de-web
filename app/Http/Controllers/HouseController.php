@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\House;
 
 class HouseController extends Controller
 {
@@ -46,6 +47,11 @@ class HouseController extends Controller
     public function show($id)
     {
         //
+    }
+    public function viewPost($id)
+    {
+        $house = House::find($id);
+        return view('detail')->with('house',$house);
     }
 
     /**

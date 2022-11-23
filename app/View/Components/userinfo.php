@@ -2,18 +2,20 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
 class userinfo extends Component
 {
+    public $uid;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($uid)
     {
-        //
+        $this->uid = $uid; 
     }
 
     /**
@@ -23,6 +25,7 @@ class userinfo extends Component
      */
     public function render()
     {
-        return view('components.userinfo');
+        $user = User::find($this->uid);
+        return view('components.userinfo',['user' => $user]);
     }
 }

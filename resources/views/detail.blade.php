@@ -16,16 +16,18 @@
     <br><br>
     <br><br>
     <div class="container">
-        <div class="row">
-            <x-detailinfo></x-detailinfo>
-            <x-userinfo></x-userinfo>
-        </div>
     
+    @php
+    $id = $house->id;
+    $uid = $house->user->id;
+    @endphp 
+        <div class="row">
+            <x-detailinfo :id="$id"></x-detailinfo>
+            <x-userinfo :uid="$uid"></x-userinfo>
+        </div>
     </div>
     <x-footer></x-footer>
+    <script src="{{asset('js/detailscript.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script>
-        alert(document.querySelector('#catrgory-filter').selected.innerHTML);
-    </script>
 </body>
 </html>

@@ -53,3 +53,24 @@ Content */
     display: flex;
     font-size: 21px;
 }
+
+nav svg {
+    width: 30px;
+}
+
+nav .justify-between {
+    display: none !important;
+}
+
+nav div:last-child {
+    text-align: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #203644;
+}
+
+nav a:hover {
+    color: #203644;
+}

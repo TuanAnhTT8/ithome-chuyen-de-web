@@ -11,4 +11,7 @@ class Street extends Model
     public function district(){
         return $this->belongsTo(District::class);
     }
+    public function houses(){
+        return $this -> hasMany(House::class,'_street_id','id');
+    }
 }

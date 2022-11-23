@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./css/search-style.css">
+<link rel="stylesheet" href="{{asset('css/search-style.css')}}">
 <div id="search-bar">
     <form action="">
         <ul class="navbar-nav">
