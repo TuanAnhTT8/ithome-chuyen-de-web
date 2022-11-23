@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PostController;
 
 /*
@@ -33,17 +33,17 @@ Route::get('/motel', function () {
     return view('motel',['cate_id' => 2]);
 });
 
-
-Route::get('/user', function () {
-    return view('user');
-});
+Route::get('/user',[UserController::class, 'getUser']);
+// Route::get('/user', function () {
+//     return view('user');
+// });
 Route::get('/posts/{id}', [HouseController::class, 'viewPost'])->name('house.viewPost');
 //Login route
 Route::get('/login',[UserController::class, 'getLogin']);
 Route::post('/login',[UserController::class, 'postLogin']);
 Route::get('/register',[UserController::class, 'getRegister']);
 Route::post('/register',[UserController::class, 'postRegister']);
-Route::get('/',[UserController::class, 'index']);
+//Route::get('/',[UserController::class, 'index']);
 Route::get('/logout',[UserController::class, 'LogoutAdmin']);
 Route::get('/post',[PostController::class, 'create']);
 Route::post('/post',[PostController::class, 'store']);

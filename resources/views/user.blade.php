@@ -17,25 +17,26 @@
     <br><br>
     <div class="container">
         <div style="padding:10px 0px" class="row">
-        <link rel="stylesheet" href="./css/userinfo-style.css">
-<div class="col-3">
-    <div class="post-author">
-        <div class="basic-info">
-            <div class="avatar">
-                <img src="./image/avatar.jpg" alt="" class="avt">
+            <link rel="stylesheet" href="./css/userinfo-style.css">
+            <div class="col-3">
+                <div class="post-author">
+                    <div class="basic-info">
+                        <div class="avatar">
+                            <img src="./image/avatar.jpg" alt="" class="avt">
+                        </div>
+                        <div class="user-name">
+                            <p>User Name</p>
+                            <p>Registered date: <span>19/10/2020</span></p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="user-name">
-                <p>User Name</p>
-                <p>Registered date: <span>19/10/2020</span></p>
-            </div>
+            <x-content :id="0"></x-content>
         </div>
 
     </div>
-</div>
-            <x-content></x-content>
-        </div>
-        
-    </div>
     <x-footer></x-footer>
 </body>
+
 </html>

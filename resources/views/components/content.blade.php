@@ -1,100 +1,46 @@
-<link rel="stylesheet" href="{{asset('css/detailinfo-style.css')}}">
-<div class="col-8">
-    <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
-        <?php $imgarr = explode(";", $house->img) ?>
-        <div class="carousel-inner">
-            @foreach($imgarr as $img)
-            <div class="carousel-item">
-                <img src="<?php echo(asset('image/'.$img))?>" class="d-block w-100" alt="...">
+<link rel="stylesheet" href="{{asset('css/content-style.css')}}">
+<div class="col-9">
+  <div class="house-list">
+    <ul>
+      @foreach ($houses as $house)
+      <li class="house-item">
+          <div class="row">
+            <div class="col-4 house-img">
+              <a href="{{ route('house.viewPost', $house->id) }}">
+              <?php $img=explode(";",$house->img)[0] ?>
+              <img class="img-fluid" src="./image/<?php echo($img) ?>" alt="">
+            </a> 
             </div>
-            @endforeach
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <h4 class="detail-title">{{$house->title.$house->id}}</h4>
-    <p class="detail-address">Address: {{$house->address_number.', '
-        .$house->street->_prefix.' '.$house->street->_name.', '
-        .$house->ward->_prefix.' '.$house->ward->_name.', '
-        .$house->district->_prefix.' '.$house->district->_name.', '
-        .$house->province->_name}}</p>
-    <p class="detail-price">Price: {{number_format($house->price)}}<span> VND</span></p>
-    <h4>Main Information</h4>
-    <div class="main-info">
-        <table>
-            <tr>
-                <td>Area: </td>
-                <td>{{$house->area}} <span>m<sup>2</sup></span></td>
-            </tr>
-            <tr>
-                <td>Upload Time: </td>
-                <td>{{date('d/m/Y', strtotime($house->create_at));}}</td>
-            </tr>
-            <tr>
-                <td>Furniture: </td>
-                <?php
-                if ($house->furniture == 1) {
-                    echo ('<td>Yes</td>');
-                } else {
-                    echo ('<td>No</td>');
-                }
-                ?>
+            <div class="col-8">
+              <h4 class="house-title"><?php echo ($house->title.$house->id); ?></h4>
+              <p class="house-address"><?php echo ($house->province->_name); ?></p>
+              <div class="house-info">
+                <ul>
+                  <li>
+                    <p class="area"><?php echo ($house->area); ?> <span>m<sup>2</sup></span></p>
+                  </li>
+                  <li>
+                    <p class="bedroom"><?php echo ($house->bedroom_amount); ?> <span>Bedroom</span></p>
+                  </li>
+                  <li>
+                    <p class="bedroom"><?php echo ($house->restroom_amount); ?> <span>Restroom</span></p>
+                  </li>
+                </ul>
+              </div>
+              <div class="price">
+                <p><?php echo (number_format($house->price)); ?><span> VND</span></p>
+              </div>
+              <div class="upload-time">
+                <p>Upload time: <?php if (date('d/m/Y', strtotime($house->create_at))==date('d/m/Y')){echo('Today');}else{echo(date('d/m/Y', strtotime($house->create_at)));}?></p>
+                <div class="favourite"><i class="far fa-heart"></i></i></div>
+              </div>
 
-            </tr>
-        </table>
-    </div>
-    <h4>Description</h4>
-    <p>{{$house->description}}</p>
-    <button type="button" class="report btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Report this Post <i class="fas fa-exclamation-triangle"></i>
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            This post is scaming
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            This post in unreal
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                        <label class="form-check-label" for="flexRadioDefault3">
-                            This post is spam
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Report</button>
-                </div>
             </div>
-        </div>
-    </div>
-    <h4>Near Location</h4>
-    <div class="map-content clearfix">
-        <iframe title="map" frameborder="0" 
-        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAYhAQ8OZ64kCDMxSiuZtUTlwRDCh4gWHs&amp;language=vi&amp;q={{$house->map}}" allowfullscreen=""></iframe>
-    </div>
+          </div>
+        </li>
+      @endforeach
+        {{$houses->links();}}
+    </ul>
+  </div>
+
 </div>
