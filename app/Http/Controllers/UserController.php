@@ -30,7 +30,7 @@ class UserController extends Controller
         {
             return Redirect::to('/login');
         }
-        return view('user');
+        return view('user',['user'=> Auth::user(),'date'=> '11']);
     }
     public function logoutAdmin()
     {

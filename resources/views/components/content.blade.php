@@ -32,7 +32,7 @@
               </div>
               <div class="upload-time">
                 <p>Upload time: <?php if (date('d/m/Y', strtotime($house->create_at))==date('d/m/Y')){echo('Today');}else{echo(date('d/m/Y', strtotime($house->create_at)));}?></p>
-                <div class="favourite"><i class="far fa-heart"></i></i></div>
+                <div class="favourite" value="<?php echo($house->id) ?>"><i class="far fa-heart"></i></div>
               </div>
 
             </div>

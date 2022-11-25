@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('district/{id}',[DistrictController::class,'show']);
 Route::get('ward/{id}',[WardController::class,'show']);
 Route::get('street/{id}',[StreetController::class,'show']);
+Route::get('like/{id}',[LikeController::class,'likePost']);

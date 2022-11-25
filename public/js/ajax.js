@@ -4,8 +4,13 @@ favourite.forEach(element => {
     element.addEventListener('click', (e) => {
         if (element.firstChild.classList.contains("fas")) {
             element.firstChild.classList.replace("fas", "far");
+
+            console.log("un-favourite");
         } else {
             element.firstChild.classList.replace("far", "fas");
+
+            console.log("favourite" + element.getAttribute('value'));
+            likePost(element.getAttribute('value'));
         }
     })
 });
@@ -31,7 +36,9 @@ async function LoadDistricts(id) {
     //console.log(response.json());
     const result = await response.json();
     //console.log(result);
-    district_select.innerHTML = `<option value="0" selected>All District</option>`;
+    district_select.innerHTML = `<option value="0" selected>All Districts</option>`;
+    ward_select.innerHTML = `<option value="0" selected>All Wards</option>`;
+    street_select.innerHTML = `<option value="0" selected>All Streets</option>`;
     result.forEach(element => {
         district_select.innerHTML += `<option value="` + element.id + `" >` + element._prefix + ` ` + element._name + `</option>`;
 
@@ -49,14 +56,14 @@ async function LoadWards(id) {
     //console.log(response.json());
     const result = await response.json();
     //console.log(result);
-    ward_select.innerHTML = `<option value="0" selected>All Ward</option>`;
+    ward_select.innerHTML = `<option value="0" selected>All Wards</option>`;
     result.forEach(element => {
         ward_select.innerHTML += `<option value="` + element.id + `" >` + element._prefix + ` ` + element._name + `</option>`;
 
     });
-    ward_select.addEventListener('change', (e) => {
-        console.log(ward_select.value);
-    });
+    // ward_select.addEventListener('change', (e) => {
+    //     console.log(ward_select.value);
+    // });
 }
 
 async function LoadStreets(id) {
@@ -65,12 +72,19 @@ async function LoadStreets(id) {
     //console.log(response.json());
     const result = await response.json();
     //console.log(result);
-    street_select.innerHTML = `<option value="0" selected>All Street</option>`;
+    street_select.innerHTML = `<option value="0" selected>All Streets</option>`;
     result.forEach(element => {
         street_select.innerHTML += `<option value="` + element.id + `" >` + element._prefix + ` ` + element._name + `</option>`;
     });
-    street_select.addEventListener('change', (e) => {
-        console.log(street_select.value);
-    });
+    // street_select.addEventListener('change', (e) => {
+    //     console.log(street_select.value);
+    // });
 
+}
+async function likePost(id) {
+    const url = './api/like/' + id;
+    const response = await fetch(url);
+    //console.log(response.json());
+    //const result = await response.json();
+    //console.log(result);
 }

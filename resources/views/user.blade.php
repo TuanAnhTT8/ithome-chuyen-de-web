@@ -18,6 +18,7 @@
     <div class="container">
         <div style="padding:10px 0px" class="row">
             <link rel="stylesheet" href="./css/userinfo-style.css">
+            <meta name=csrf-token content="{{csrf_token()}}">
             <div class="col-3">
                 <div class="post-author">
                     <div class="basic-info">
@@ -25,8 +26,8 @@
                             <img src="./image/avatar.jpg" alt="" class="avt">
                         </div>
                         <div class="user-name">
-                            <p>User Name</p>
-                            <p>Registered date: <span>19/10/2020</span></p>
+                            <p>{{$user->name}}</p>
+                            <p>Registered date: <span>{{date('d/m/Y', strtotime($user->created_at))}}</span></p>
                         </div>
                     </div>
 

@@ -7,7 +7,7 @@
             </li>
             <li>
                 <select id="province-select" class="form-select" aria-label="Default select example">
-                <option value="0" selected>All Province</option>
+                <option value="0" selected>All Provinces</option>
                     @foreach ($provinces as $province){
                         <option value="{{$province -> id}}">{{$province -> _name}}</option>
                     @endforeach                  
@@ -15,19 +15,19 @@
             </li>
             <li>
                 <select id="district-select" class="form-select" aria-label="Default select example">
-                <option value="0" selected>All Province</option>
+                <option value="0" selected>All Districts</option>
                                     
                 </select>
             </li>
             <li>
                 <select id="ward-select" class="form-select" aria-label="Default select example">
-                <option value="0" selected>All Ward</option>
+                <option value="0" selected>All Wards</option>
                                     
                 </select>
             </li>
             <li>
                 <select id="street-select" class="form-select" aria-label="Default select example">
-                <option value="0" selected>All Street</option>
+                <option value="0" selected>All Streets</option>
                                     
                 </select>
             </li>

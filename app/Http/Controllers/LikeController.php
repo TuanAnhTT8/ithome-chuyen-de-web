@@ -23,7 +23,7 @@ class LikeController extends Controller
      */
     public function create()
     {
-        //
+        return view('home');
     }
 
     /**
@@ -34,7 +34,11 @@ class LikeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+    }
+    public function likePost(Request $request)
+    {
+        return view('home');
     }
 
     /**
