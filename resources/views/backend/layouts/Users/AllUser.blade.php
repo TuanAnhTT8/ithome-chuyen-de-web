@@ -116,6 +116,7 @@
                       <tbody>
                         <?php
                         $stt = 1;
+                      
                         ?>
                         @foreach($user as $user )
                         <?php $key = rand(111111111, 999999999);

@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
     protected $table = 'categories';
     public function houses(){
-        return $this->hasMany(House::class);
+        return $this->hasMany(House::class,'_category_id','id');
     }
     public $timestamps = false;
 }

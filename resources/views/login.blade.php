@@ -16,7 +16,13 @@
     <x-header></x-header>
     <br><br>
     <br><br>
+
     <div class="container">
+    @if (session()->has('msg'))
+                <div class="alert alert-success">
+                    {{ session()->get('msg') }}
+                </div>
+                @endif
         <x-loginform></x-loginform>
     </div>
     <x-footer></x-footer>

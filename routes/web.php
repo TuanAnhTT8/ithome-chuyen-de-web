@@ -78,14 +78,26 @@ Route::group(['module' => 'admin', 'middleware' => 'web', 'namespace' => "App\Ht
     });
     Route::group(["prefix" => "posts"], function() {
         Route::get("/", ["as" => "admin.hotels", "uses" => "AdminController@getAllPost"]);
-        Route::get("add", ["as" => "admin.hotels.add", "uses" => "AdminController@AddHotel"]);
-        Route::post("save", ["as" => "admin.hotels.add", "uses" => "AdminController@getSaveHotel"]);
-        Route::get("delete/{id}", ["as" => "admin.hotels.edit", "uses" => "AdminController@DeleteHotel"]);
-        Route::get("edit/{id}", ["as" => "admin.hotels.edit", "uses" => "AdminController@EditHotel"]);
-        Route::post("update/{id}", ["as" => "admin.hotels.eidt", "uses" => "AdminController@UpdateHotel"]);
+      
+        Route::get("delete/{id}", ["as" => "admin.hotels.edit", "uses" => "AdminController@DeletePost"]);
+        
+    });
+    Route::group(["prefix" => "likes"], function() {
+        Route::get("/", ["as" => "admin.likes", "uses" => "AdminController@getAlllikes"]);
+      
+        Route::get("delete/{id}", ["as" => "admin.likes.edit", "uses" => "AdminController@Deletelikes"]);
+        
     });
     Route::group(["prefix" => "categories"], function() {
         Route::get("/", ["as" => "admin.categories", "uses" => "AdminController@getAllCategories"]);
+        Route::get("add", ["as" => "admin.categories.add", "uses" => "AdminController@AddCategories"]);
+        Route::post("save", ["as" => "admin.categories.add", "uses" => "AdminController@getSaveCategories"]);
+        Route::get("delete/{id}", ["as" => "admin.categories.edit", "uses" => "AdminController@DeleteCategories"]);
+        Route::get("edit/{id}", ["as" => "admin.categories.edit", "uses" => "AdminController@EditCategories"]);
+        Route::post("update/{id}", ["as" => "admin.categories.eidt", "uses" => "AdminController@UpdateCategories"]);
+    });
+    Route::group(["prefix" => "users"], function() {
+        Route::get("/", ["as" => "admin.categories", "uses" => "AdminController@getAllusers"]);
         Route::get("add", ["as" => "admin.categories.add", "uses" => "AdminController@AddCategories"]);
         Route::post("save", ["as" => "admin.categories.add", "uses" => "AdminController@getSaveCategories"]);
         Route::get("delete/{id}", ["as" => "admin.categories.edit", "uses" => "AdminController@DeleteCategories"]);

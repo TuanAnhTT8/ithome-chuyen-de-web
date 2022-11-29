@@ -19,6 +19,11 @@
     <br><br>
     <br><br>
     <div class="container">
+    @if (session()->has('msg'))
+                <div class="alert alert-success">
+                    {{ session()->get('msg') }}
+                </div>
+                @endif
         <x-search></x-search>
         <div style="padding:10px 0px" class="row">
             <x-category></x-category>

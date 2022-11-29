@@ -11,9 +11,6 @@ class House extends Model
     public function category(){
         return $this -> belongsTo(Category::class,'_category_id','id');
     }
-   
-
-
     public function province(){
         return  $this->belongsTo(Province::class,'_province_id','id');
     }
@@ -29,7 +26,7 @@ class House extends Model
     public function user(){
         return  $this->belongsTo(User::class,'user_id','id');
     }
-    public function like(){
-        return  $this->belongsTo(Like::class,'house_id','id');
+    public function likes(){
+        return  $this->hasMany(Like::class,'house_id','id');
     }
 }

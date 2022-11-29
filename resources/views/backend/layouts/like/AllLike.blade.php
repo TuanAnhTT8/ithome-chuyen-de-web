@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bài đăng | ITHome!</title>
+    <title>Lượt yêu thích | ITHome!</title>
 
     <!-- Bootstrap -->
     <link href="{{ url('cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css')}}">
@@ -45,7 +45,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Quản lí Motel<small>    </small></h3>
+                <h3>Lượt yêu thích<small>    </small></h3>
               </div>
 
               <div class="title_right">
@@ -66,7 +66,7 @@
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Danh sách Motel </h2>
+                    <h2>Lượt yêu thích </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -93,18 +93,11 @@
                       <thead>
                         <tr>
                         <th>ID</th>
-                        <th>Hình ảnh</th>
+                        <th>username like</th>
                          
-                          <th>Loại</th>
-                          <th>Tiêu đề</th>
-                          <th>Địa chỉ</th>
-                          <th>Nội thất</th>
-                          <th>Số lượng nhà vệ sinh</th>
-                          <th>Số lượng phòng ngủ</th>
-                          <th>Giá</th>
-                          <th>Mô tả</th>
-                          <th>username người đăng</th>
-                          <th>Thời gian đăng</th>
+                          <th>Id house</th>
+                          <th>Thời gian yêu thích</th>
+                        
                           <th style="width:50px;">Lựa chọn</th>
                           
                         </tr>
@@ -118,42 +111,18 @@
                          
                           <?php 
                          ?>
-                         @foreach($house as $house)
+                         @foreach($like as $like)
                         <tr>
                      
                          
-                          <td> {{$house->id}}</td>
-                          <!-- Lấy chuỗi img và xử đẩy 1 hình đầu tiên -->
-                          <?php
-                            $arr = explode(';',$house->img);
-                            
-                          ?>
-                          <td><img src="./image/{{$arr[0]}}" height="100" width="100" alt=""></td>
+                          <td> {{$like->id}}</td>
+                          <td>{{$like->user->username}}</td>
                           
-                          <td>{{$house->category->cate_name}}</td>
-                          <td>{{$house->title	}}</td>
-                          
-                          <td>{{$house->address_number}} ,{{$house->street->_prefix}} {{$house->street->_name}}, {{$house->ward->_prefix}} {{$house->ward->_name}}, {{$house->district->_prefix}} {{$house->district->_name}}, {{$house->province->_name}}</td>
-                          <td>
-                            <?php 
-                              if($house->furniture  ==1)
-                              {
-                                $noithat = 'Có';
-                              }
-                              else{
-                                $noithat = 'Không';
-                              }
-                              echo htmlentities($noithat);
-                            ?>
-
-                          </td>
+                          <td>{{$like->house_id}}</td>
+                          <td>{{$like->created_at}}</td>
+                         
                       
-                          <td>{{$house->restroom_amount}}</td>
-                          <td>{{$house->bedroom_amount}}</td>
-                          <td>{{$house->price}}</td>
-                          <td>{{$house->description}}</td>
-                          <td>{{$house->user->username}}</td>
-                          <td>{{$house->create_at}}</td>
+                         
                           <?php 
                             $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
                             $rand = rand(10000,99999);
@@ -164,11 +133,11 @@
                               $str .= $chars[ rand( 0, $size - 1 ) ];
                             }
                             $str = substr( str_shuffle( $chars ), 0, $length );
-                            $id_security = base64_encode($house['id']).'_'.$rand.'_'.$str;
+                            $id_security = base64_encode($like['id']).'_'.$rand.'_'.$str;
                            
                             ?>
                           <td >
-                              <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="/posts/delete/{{$id_security}}"><i class="fa fa-trash"></i></a>
+                              <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="/likes/delete/{{$id_security}}"><i class="fa fa-trash"></i></a>
                         </div>
                          
                         </td>

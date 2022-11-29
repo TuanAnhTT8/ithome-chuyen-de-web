@@ -32,9 +32,17 @@
 
                     </ul>
                   </li>
+                  
                   <li><a><i class="fa fa-edit"></i> Quản lí bài đăng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     <li><a href="{{asset('posts')}}">Danh sách bài đăng</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-edit"></i> Danh mục  <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    <li><a href="{{asset('categories')}}">Xem tất cả danh mục</a></li>
+                    <li><a href="{{asset('categories/add')}}">Thêm danh mục</a></li>
                       
     
 
@@ -45,7 +53,7 @@
 
                   <li><a><i class="fa fa-edit"></i> Favorite <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    <li><a href="{{asset('favorite')}}">Danh sách Favorite</a></li>
+                    <li><a href="{{asset('likes')}}">Danh sách Favorite</a></li>
                       
                       <!-- <li><a href="{{asset('allmanufactures')}}">Xem tất cả nhà sản xuất</a></li>
                       <li><a href="{{url('admin/addmanufactures')}}">Thêm hiệu sản xuất</a></li>
