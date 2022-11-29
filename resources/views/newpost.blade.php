@@ -99,24 +99,24 @@
                 <div class="house-stat-item">
                     <div class="restroom-amount">
                         <label class="form-label" for="price">Restroom Amount</label>
-                        <input type="number" id="restroom" name="restroom" class="form-control form-control-lg" placeholder="" />
+                        <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="restroom" name="restroom" class="form-control form-control-lg" placeholder="" />
                     </div>
                 </div>
                 <div class="house-stat-item">
                     <div class="bedroom-amount">
                         <label class="form-label" for="price">Bedroom Amount</label>
-                        <input type="number" id="bedroom" name="bedroom" class="form-control form-control-lg" placeholder="" />
+                        <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="bedroom" name="bedroom" class="form-control form-control-lg" placeholder="" />
                     </div>
                 </div>
                 <div class="house-stat-item">
                     <div class="bedroom-amount">
-                        <label class="form-label" for="price">Area</label>
-                        <input type="number" name="area" id="area" class="form-control form-control-lg" placeholder="" />
+                        <label class="form-label" for="price">Area (<span>m<sup>2</sup></span>)</label>
+                        <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="area" id="area" class="form-control form-control-lg" placeholder="" />
                     </div>
                 </div>
             </div>
             <div class="price">
-                <label class="form-label" for="price">Price</label>
+                <label class="form-label" for="price">Price (VND)</label>
                 <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="price" name="price" class="form-control form-control-lg" placeholder="" />
             </div>
             <div class="additional-information">
