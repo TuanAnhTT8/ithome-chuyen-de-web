@@ -37,11 +37,11 @@
   
   <div class="box-dashbord">
       <div class="card-dashbord ">
-          <h2>34</h2>
-          <span>POST</span>
+          <h2>{{$count_house}}</h2>
+          <span>House</span>
       </div>
       <div class="card-dashbord fix">
-          <h2>3</h2>
+          <h2>{{$count_user}}</h2>
           <span>USER</span>
       </div>
   </div>

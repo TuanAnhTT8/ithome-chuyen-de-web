@@ -29,4 +29,7 @@ class House extends Model
     public function user(){
         return  $this->belongsTo(User::class,'user_id','id');
     }
+    public function like(){
+        return  $this->belongsTo(Like::class,'house_id','id');
+    }
 }
