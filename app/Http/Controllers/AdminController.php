@@ -233,7 +233,7 @@ public function getAllusers()
          
   
     return view('backend.layouts.Users.AllUser')->with('user', $user);
-<<<<<<< HEAD
+
 }
 
 // public function AddCategories(Request $request)
@@ -325,8 +325,7 @@ public function getAllusers()
 
 
    //end user
-=======
->>>>>>> 1-F-TuanAnh
+
 }
 
 // public function AddCategories(Request $request)
@@ -418,4 +417,4 @@ public function getAllusers()
 
 
    //end user
-}
+   
