@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Province;
 use App\Models\House;
+use App\Models\Like;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class HouseController extends Controller
 {
@@ -24,7 +28,14 @@ class HouseController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::check())
+        {
+            $provinces = Province::all();
+            return view('newpost')->with('provinces',$provinces);
+        }
+        else{
+           return Redirect::to('/login');
+        }
     }
 
     /**
@@ -85,6 +96,27 @@ class HouseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
+
+    public function myPosts()
+    {
+        if(!Auth::check()){
+            return Redirect::to('/login');
+        }
+        else{
+            return view('myposts',['user' => Auth::user(),'houses' => House::where('user_id',Auth::user()->id)->paginate(5)]);
+        }
+    }
+
+    public function myFavorite()
+    {
+        if(!Auth::check()){
+            return Redirect::to('/login');
+        }
+        else{
+            return view('myfavorite',['user' => Auth::user(), 'likes' => Like::where('user_id',Auth::user()->id)->paginate(5)]);
+        }
+    }
+    
 }

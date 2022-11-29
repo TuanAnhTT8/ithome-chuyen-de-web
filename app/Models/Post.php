@@ -14,4 +14,7 @@ class Post extends Model
     public function likes(){
         return  $this->hasMany(Like::class);
     }
+    public function house(){
+        return  $this->hasOne(House::class);
+    }
 }

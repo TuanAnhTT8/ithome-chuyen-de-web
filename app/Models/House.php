@@ -32,4 +32,8 @@ class House extends Model
     public function like(){
         return  $this->belongsTo(Like::class,'house_id','id');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1-F-TuanAnh

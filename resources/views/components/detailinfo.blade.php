@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td>Upload Time: </td>
-                <td>{{date('d/m/Y', strtotime($house->create_at));}}</td>
+                <td>{{date('d/m/Y', strtotime($house->create_at))}}</td>
             </tr>
             <tr>
                 <td>Furniture: </td>

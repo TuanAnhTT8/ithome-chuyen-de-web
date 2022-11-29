@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,11 +35,15 @@ Route::get('/motel', function () {
     return view('motel',['cate_id' => 2]);
 });
 
+Route::get('/myposts', [HouseController::class, 'myPosts']);
+Route::get('/myfavorite', [HouseController::class, 'myFavorite']);
+
 Route::get('/user',[UserController::class, 'getUser']);
 // Route::get('/user', function () {
 //     return view('user');
 // });
 Route::get('/posts/{id}', [HouseController::class, 'viewPost'])->name('house.viewPost');
+Route::get('/post/like/{id}', [LikeController::class, 'like'])->name('post.likePost');
 //Login route
 Route::get('/login',[UserController::class, 'getLogin']);
 Route::post('/login',[UserController::class, 'postLogin']);

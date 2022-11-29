@@ -4,7 +4,9 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 use App\Models\House;
+use App\Models\Like;
 use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\Auth;
 
 class content extends Component
 {
@@ -32,10 +34,12 @@ class content extends Component
         else{
             $houses = House::where('_category_id',$this->id)->orderBy('create_at','desc')->paginate(5);
         }
-        // var_dump($houses->province->_name);
-        // die();
-        //$houses = House::orderBy('created_at','desc')->get();
-        //$house1 = Post::find('1')->house;
-        return view('components.content', ['houses' => $houses]);
+        if(Auth::check()){
+            return view('components.content', ['houses' => $houses,'user' => Auth::user(),'likes' => Like::where('user_id',Auth::id())->get()]);
+        }
+        else{
+            return view('components.content', ['houses' => $houses]);
+        }
+
     }
 }
