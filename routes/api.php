@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\DistrictController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\WardController;
 use App\Http\Controllers\StreetController;
 
@@ -23,4 +24,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('district/{id}',[DistrictController::class,'show']);
 Route::get('ward/{id}',[WardController::class,'show']);
 Route::get('street/{id}',[StreetController::class,'show']);
-Route::get('like/{id}',[LikeController::class,'likePost']);

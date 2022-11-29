@@ -24,6 +24,10 @@ Content */
     border-bottom: none;
 }
 
+.favourite {
+    text-decoration: none;
+}
+
 .favourite i {
     color: #eb4432;
     margin: 0 auto;

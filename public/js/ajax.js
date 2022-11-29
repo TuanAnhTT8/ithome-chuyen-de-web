@@ -1,19 +1,18 @@
 //Jquery that change favourite icon while click
 const favourite = document.querySelectorAll('.favourite');
 favourite.forEach(element => {
+    if (element.childElementCount == 0) {
+        element.innerHTML = `<i class="far fa-heart"></i>`;
+    }
     element.addEventListener('click', (e) => {
         if (element.firstChild.classList.contains("fas")) {
             element.firstChild.classList.replace("fas", "far");
-
-            console.log("un-favourite");
         } else {
             element.firstChild.classList.replace("far", "fas");
-
-            console.log("favourite" + element.getAttribute('value'));
-            likePost(element.getAttribute('value'));
         }
     })
 });
+
 
 // const houseitem = document.querySelectorAll('.house-item');
 // houseitem.forEach(element => {
@@ -81,10 +80,27 @@ async function LoadStreets(id) {
     // });
 
 }
-async function likePost(id) {
-    const url = './api/like/' + id;
+async function addLike(id, uid) {
+    const url = './api/like/' + id + '-' + uid;
     const response = await fetch(url);
     //console.log(response.json());
-    //const result = await response.json();
+    const result = await response.json();
     //console.log(result);
+    if (result == 0) {
+        alert('House not exist');
+    } else if (result == 1) {
+        alert('Like Success');
+    }
+}
+async function removeLike(id, uid) {
+    const url = './api/removelike/' + id + '-' + uid;
+    const response = await fetch(url);
+    //console.log(response.json());
+    const result = await response.json();
+    console.log(result);
+    if (result == 0) {
+        alert('House not exist');
+    } else if (result == 1) {
+        alert('UnLike Success');
+    }
 }

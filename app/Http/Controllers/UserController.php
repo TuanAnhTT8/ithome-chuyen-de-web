@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; //use thư viện auth
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -88,12 +89,15 @@ class UserController extends Controller
             'password' => $request->password,
         ];
         
-        $check = User::where('email',$arr['email'])->get();
-        
-        
+        $check = User::where('email',$arr['email'])->get();                
         if(count($check) > 0)
         {
             return Redirect::to('/register')->with([ "message" => "Email đã tồn tại không thể đăng ký tài khoản!"]);;
+        }
+        $check = User::where('username',$arr['username'])->get();                
+        if(count($check) > 0)
+        {
+            return Redirect::to('/register')->with([ "message" => "Tên người dùng đã tồn tại không thể đăng ký tài khoản!"]);;
         }
         
         $user = new User;
@@ -102,6 +106,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = $request->password;
         $user->role = 2;
+        $user->remember_token = Str::random(60).$request->username;
         $user->save();
         
         

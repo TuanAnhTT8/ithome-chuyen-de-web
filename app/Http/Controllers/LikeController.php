@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Like;
+use App\Models\House;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+
 
 class LikeController extends Controller
 {
@@ -23,7 +29,7 @@ class LikeController extends Controller
      */
     public function create()
     {
-        return view('home');
+        
     }
 
     /**
@@ -36,10 +42,25 @@ class LikeController extends Controller
     {
         
     }
-    public function likePost(Request $request)
+    public function like($id)
     {
-        return view('home');
+        if(Auth::check()){
+            if(count(Like::where('user_id',Auth::id())->where('house_id',$id)->get()) == 0){
+                $like = new Like;
+                $like->user_id=Auth::id();
+                $like->house_id=$id;
+                $like->save();
+                return Redirect::back();
+            }else{
+                $like = Like::where('house_id',$id)->where('user_id',Auth::id())->delete();
+                return Redirect::back();
+            }
+        }
+        else{
+            return Redirect::to('/login');
+        }
     }
+
 
     /**
      * Display the specified resource.

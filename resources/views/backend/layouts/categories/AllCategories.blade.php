@@ -106,7 +106,7 @@
                       <?php
                         $stt = 1;
                     ?>  
-                         
+                          {{$id_encode}}
                           <?php 
                           foreach ($all_categories as $all_categories => $value) {
                    
@@ -114,7 +114,7 @@
                          ?>
                         <tr>
                   
-                         
+                            
                           <td>{{$value['id']}}</td>
                           <td>{{$value['cate_name']}}</td>
                           
@@ -133,6 +133,7 @@
                             $id_security = base64_encode($value['id']).'_'.$rand.'_'.$str;
                            
                             ?>
+                            
                           <div class="fa-hover col-md-3 col-sm-4  "><a href="/categories/edit/{{$id_security}}"><i class="fa fa-wrench"></i></a>
                             
                               <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="/categories/delete/{{$id_security}}"><i class="fa fa-trash"></i></a>

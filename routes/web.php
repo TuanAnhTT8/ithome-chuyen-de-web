@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -42,7 +43,7 @@ Route::get('/user',[UserController::class, 'getUser']);
 //     return view('user');
 // });
 Route::get('/posts/{id}', [HouseController::class, 'viewPost'])->name('house.viewPost');
-Route::post('/posts/like/{id}', [LikeController::class, 'likePost'])->name('post.likePost');
+Route::get('/post/like/{id}', [LikeController::class, 'like'])->name('post.likePost');
 //Login route
 Route::get('/login',[UserController::class, 'getLogin']);
 Route::post('/login',[UserController::class, 'postLogin']);
