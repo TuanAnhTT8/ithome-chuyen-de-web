@@ -2,18 +2,20 @@
 
 namespace App\View\Components;
 
+use App\Models\House;
 use Illuminate\View\Component;
 
 class detailinfo extends Component
 {
+    public $id;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id)
     {
-        //
+        $this->id = $id;        
     }
 
     /**
@@ -22,7 +24,8 @@ class detailinfo extends Component
      * @return \Illuminate\Contracts\View\View|\Closure|string
      */
     public function render()
-    {
-        return view('components.detailinfo');
+    {   
+        $house = House::find($this->id);
+        return view('components.detailinfo', ['house' => $house]);
     }
 }

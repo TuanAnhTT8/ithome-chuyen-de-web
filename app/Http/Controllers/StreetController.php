@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\House;
+use App\Models\Street;
+use Illuminate\Http\Response;
 
-class HouseController extends Controller
+class StreetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,12 +47,9 @@ class HouseController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-    public function viewPost($id)
-    {
-        $house = House::find($id);
-        return view('detail')->with('house',$house);
+        $street = Street::where('_district_id',$id)
+        ->get();
+        return response()->json($street, Response::HTTP_OK);
     }
 
     /**

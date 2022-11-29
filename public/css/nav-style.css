@@ -50,3 +50,7 @@ Navbar */
 #ithomelogo {
     width: 30%;
 }
+
+.dropdown-item {
+    color: #203644 !important;
+}

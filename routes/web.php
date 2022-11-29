@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PostController;
 
 /*
@@ -17,30 +17,33 @@ use App\Http\Controllers\PostController;
 */
 
 
+Route::get('/', function () {
+    return view('home',['cate_id' => 0]);
+});
+Route::get('/home', function () {
+    return view('home',['cate_id' => 0]);
+});
 Route::get('/apartment', function () {
-    return view('apartment');
+    return view('apartment',['cate_id' => 1]);
 });
 Route::get('/house', function () {
-    return view('house');
+    return view('house',['cate_id' => 3]);
 });
 Route::get('/motel', function () {
-    return view('motel');
-});
-Route::get('/detail', function () {
-    return view('detail');
+    return view('motel',['cate_id' => 2]);
 });
 
-
-Route::get('/user', function () {
-    return view('user');
-});
-
+Route::get('/user',[UserController::class, 'getUser']);
+// Route::get('/user', function () {
+//     return view('user');
+// });
+Route::get('/posts/{id}', [HouseController::class, 'viewPost'])->name('house.viewPost');
 //Login route
 Route::get('/login',[UserController::class, 'getLogin']);
 Route::post('/login',[UserController::class, 'postLogin']);
 Route::get('/register',[UserController::class, 'getRegister']);
 Route::post('/register',[UserController::class, 'postRegister']);
-Route::get('/',[UserController::class, 'index']);
+//Route::get('/',[UserController::class, 'index']);
 Route::get('/logout',[UserController::class, 'LogoutAdmin']);
 Route::get('/post',[PostController::class, 'create']);
 Route::post('/post',[PostController::class, 'store']);

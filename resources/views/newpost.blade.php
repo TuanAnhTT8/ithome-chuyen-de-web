@@ -49,19 +49,34 @@
             </div>
             <div class="location-picker">
                 <div class="location location-item">
-                <label class="form-label" for="category-select">Location</label>
-                    <select id="province-select" name="province" class="form-select" aria-label="Default select example " required>
+
+                    <label class="form-label" for="category-select">Location</label>
+                    <select id="province-select" name="province" class="form-select" aria-label="Default select example">
+                    <option value="0" selected>--Select Province--</option>
+
                         @foreach ($provinces as $province){
                         <option value="{{$province -> id}}">{{$province -> _name}}</option>
-                        @endforeach      
-                      
+                        @endforeach
                     </select>
-
                 </div>
                 <div class="distric location-item">
-                <label class="form-label" for="category-select">Distric</label>
-                    <select id="district-select" name="district" class="form-select" aria-label="Default select example" required>
-                        
+                    <label class="form-label" for="category-select">Distric</label>
+                    <select id="district-select" class="form-select" aria-label="Default select example">
+                        <option value="0" selected>--Select Distrcit--</option>
+                    </select>
+                </div>
+                <div class="distric location-item">
+                    <label class="form-label" for="category-select">Distric</label>
+                    <select id="ward-select" class="form-select" aria-label="Default select example">
+                        <option value="0" selected>--Select Ward--</option>
+                    </select>
+                </div>
+                <div class="distric location-item">
+
+                    <label class="form-label" for="category-select">Distric</label>
+                    <select id="street-select" class="form-select" aria-label="Default select example">
+                        <option value="0" selected>--Select Street--</option>
+
                     </select>
                 </div>
                 <div class="address form-outline mb-4 location-item">
@@ -108,6 +123,36 @@
                     <label class="form-label" for="price">Area</label>
                     <input type="number" name="area" id="area" class="form-control form-control-lg" placeholder="" required/>
                 </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <div class="house-stat-item">
+                    <div class="restroom-amount">
+                        <label class="form-label" for="price">Restroom Amount</label>
+                        <input type="number" id="restroom" name="restroom" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                </div>
+                <div class="house-stat-item">
+                    <div class="bedroom-amount">
+                        <label class="form-label" for="price">Bedroom Amount</label>
+                        <input type="number" id="bedroom" name="bedroom" class="form-control form-control-lg" placeholder="" />
+                    </div>
+                </div>
+                <div class="house-stat-item">
+                    <div class="bedroom-amount">
+                        <label class="form-label" for="price">Area</label>
+                        <input type="number" name="area" id="area" class="form-control form-control-lg" placeholder="" />
+                    </div>
                 </div>
             </div>
             <div class="price">

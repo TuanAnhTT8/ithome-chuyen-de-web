@@ -14,4 +14,19 @@ class House extends Model
    
 
 
+    public function province(){
+        return  $this->belongsTo(Province::class,'_province_id','id');
+    }
+    public function district(){
+        return  $this->belongsTo(District::class,'_district_id','id');
+    }
+    public function ward(){
+        return  $this->belongsTo(Ward::class,'_ward_id','id');
+    }
+    public function street(){
+        return  $this->belongsTo(Street::class,'_street_id','id');
+    }
+    public function user(){
+        return  $this->belongsTo(User::class,'user_id','id');
+    }
 }

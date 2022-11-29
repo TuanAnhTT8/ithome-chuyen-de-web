@@ -1,21 +1,13 @@
-<link rel="stylesheet" href="./css/detailinfo-style.css">
+<link rel="stylesheet" href="{{asset('css/detailinfo-style.css')}}">
 <div class="col-8">
     <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
+        <?php $imgarr = explode(";", $house->img) ?>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="./image/house1.jpg" class="d-block w-100" alt="...">
-            </div>
+            @foreach($imgarr as $img)
             <div class="carousel-item">
-                <img src="./image/house2.jpg" class="d-block w-100" alt="...">
+                <img src="<?php echo(asset('image/'.$img))?>" class="d-block w-100" alt="...">
             </div>
-            <div class="carousel-item">
-                <img src="./image/house3.jpg" class="d-block w-100" alt="...">
-            </div>
+            @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -26,28 +18,39 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <h4 class="detail-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, velit!</h4>
-    <p class="detail-address">Address</p>
-    <p class="detail-price">6,000,000 <span>VND</span></p>
+    <h4 class="detail-title">{{$house->title.$house->id}}</h4>
+    <p class="detail-address">Address: {{$house->address_number.', '
+        .$house->street->_prefix.' '.$house->street->_name.', '
+        .$house->ward->_prefix.' '.$house->ward->_name.', '
+        .$house->district->_prefix.' '.$house->district->_name.', '
+        .$house->province->_name}}</p>
+    <p class="detail-price">Price: {{number_format($house->price)}}<span> VND</span></p>
     <h4>Main Information</h4>
     <div class="main-info">
-    <table>
-        <tr>
-            <td>Area: </td>
-            <td>40 <span>m<sup>2</sup></span></td>
-        </tr>
-        <tr>
-            <td>Upload Time: </td>
-            <td>19/10/2022</td>
-        </tr>
-        <tr>
-            <td>Furniture: </td>
-            <td>Yes</td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <td>Area: </td>
+                <td>{{$house->area}} <span>m<sup>2</sup></span></td>
+            </tr>
+            <tr>
+                <td>Upload Time: </td>
+                <td>{{date('d/m/Y', strtotime($house->create_at));}}</td>
+            </tr>
+            <tr>
+                <td>Furniture: </td>
+                <?php
+                if ($house->furniture == 1) {
+                    echo ('<td>Yes</td>');
+                } else {
+                    echo ('<td>No</td>');
+                }
+                ?>
+
+            </tr>
+        </table>
     </div>
     <h4>Description</h4>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, ea voluptatum est provident, minus dolore accusamus unde suscipit maiores, quis sequi amet sit illum inventore! Repudiandae nisi quidem numquam tempore.
+    <p>{{$house->description}}</p>
     <button type="button" class="report btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Report this Post <i class="fas fa-exclamation-triangle"></i>
     </button>
@@ -91,6 +94,7 @@
     </div>
     <h4>Near Location</h4>
     <div class="map-content clearfix">
-        <iframe title="map" frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAYhAQ8OZ64kCDMxSiuZtUTlwRDCh4gWHs&amp;language=vi&amp;q=10.781393529999999,106.64632034499994" allowfullscreen=""></iframe>
+        <iframe title="map" frameborder="0" 
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAYhAQ8OZ64kCDMxSiuZtUTlwRDCh4gWHs&amp;language=vi&amp;q={{$house->map}}" allowfullscreen=""></iframe>
     </div>
 </div>

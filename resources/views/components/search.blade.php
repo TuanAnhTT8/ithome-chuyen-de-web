@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./css/search-style.css">
+<link rel="stylesheet" href="{{asset('css/search-style.css')}}">
 <div id="search-bar">
     <form action="">
         <ul class="navbar-nav">
@@ -16,6 +16,18 @@
             <li>
                 <select id="district-select" class="form-select" aria-label="Default select example">
                 <option value="0" selected>All Province</option>
+                                    
+                </select>
+            </li>
+            <li>
+                <select id="ward-select" class="form-select" aria-label="Default select example">
+                <option value="0" selected>All Ward</option>
+                                    
+                </select>
+            </li>
+            <li>
+                <select id="street-select" class="form-select" aria-label="Default select example">
+                <option value="0" selected>All Street</option>
                                     
                 </select>
             </li>
@@ -64,4 +76,3 @@
 
     </form>
 </div>
-<script src="./js/ajax.js"></script>

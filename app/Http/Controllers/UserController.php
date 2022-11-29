@@ -23,6 +23,15 @@ class UserController extends Controller
         }
         return view('login');
     }
+    public function getUser()
+    {
+        
+        if(!Auth::check())
+        {
+            return Redirect::to('/login');
+        }
+        return view('user');
+    }
     public function logoutAdmin()
     {
        
