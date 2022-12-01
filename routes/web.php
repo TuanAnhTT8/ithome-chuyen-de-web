@@ -52,7 +52,9 @@ Route::post('/register',[UserController::class, 'postRegister']);
 //Route::get('/',[UserController::class, 'index']);
 Route::get('/logout',[UserController::class, 'LogoutAdmin']);
 Route::get('/post',[PostController::class, 'create']);
-Route::post('/post',[PostController::class, 'store']);
+Route::post('/post',[PostController::class, 'store'])->name('post.store');
+Route::get('/myposts/updatepost/{id}',[PostController::class, 'updatePost'])->name('post.updatePost');
+Route::post('/myposts/updatepost/{id}',[PostController::class, 'update'])->name('post.update');
 //endlogin
 /*
 ********************************************************************

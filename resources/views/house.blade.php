@@ -22,9 +22,9 @@
             <x-category></x-category>
             <x-content :id="$cate_id"></x-content>
         </div>
-        
+
     </div>
-    
+
     <x-footer></x-footer>
     <script src="./js/ajax.js"></script>
 </body>

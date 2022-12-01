@@ -15,3 +15,14 @@ Detail Info */
 .main-info td {
     width: 25%;
 }
+
+.carousel .carousel-item {
+    height: 600px;
+}
+
+.carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 600px;
+}

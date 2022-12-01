@@ -23,7 +23,7 @@ class navbar extends Component
      */
     public function render()
     {
-        if(Auth::user() != null){
+        if(Auth::check()){
             return view('components.navbar',['user' => Auth::user()]);
         }
         else{

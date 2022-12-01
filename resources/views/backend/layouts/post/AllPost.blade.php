@@ -153,7 +153,7 @@
                           <td>{{$house->price}}</td>
                           <td>{{$house->description}}</td>
                           <td>{{$house->user->username}}</td>
-                          <td>{{$house->create_at}}</td>
+                          <td>{{$house->created_at}}</td>
                           <?php 
                             $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
                             $rand = rand(10000,99999);

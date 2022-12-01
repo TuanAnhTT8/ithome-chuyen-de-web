@@ -29,10 +29,10 @@ class content extends Component
     public function render()
     {
         if($this->id == 0){
-            $houses = House::orderBy('create_at','desc')->paginate(5);
+            $houses = House::orderBy('created_at','desc')->paginate(5);
         }
         else{
-            $houses = House::where('_category_id',$this->id)->orderBy('create_at','desc')->paginate(5);
+            $houses = House::where('_category_id',$this->id)->orderBy('created_at','desc')->paginate(5);
         }
         if(Auth::check()){
             return view('components.content', ['houses' => $houses,'user' => Auth::user(),'likes' => Like::where('user_id',Auth::id())->get()]);

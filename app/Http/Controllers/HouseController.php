@@ -105,7 +105,7 @@ class HouseController extends Controller
             return Redirect::to('/login');
         }
         else{
-            return view('myposts',['user' => Auth::user(),'houses' => House::where('user_id',Auth::user()->id)->paginate(5)]);
+            return view('myposts',['user' => Auth::user(),'houses' => House::where('user_id',Auth::user()->id)->paginate(5), 'likes' => Like::where('user_id',Auth::id())->get()]);
         }
     }
 

@@ -4,9 +4,11 @@
         <?php $imgarr = explode(";", $house->img) ?>
         <div class="carousel-inner">
             @foreach($imgarr as $img)
-            <div class="carousel-item">
-                <img src="<?php echo(asset('image/'.$img))?>" class="d-block w-100" alt="...">
-            </div>
+                @if($img!="")
+                <div class="carousel-item">
+                    <img src="<?php echo(asset('image/'.$img))?>" class="d-block w-100" alt="...">
+                </div>
+                @endif
             @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
@@ -34,7 +36,7 @@
             </tr>
             <tr>
                 <td>Upload Time: </td>
-                <td>{{date('d/m/Y', strtotime($house->create_at))}}</td>
+                <td>{{date('d/m/Y', strtotime($house->created_at))}}</td>
             </tr>
             <tr>
                 <td>Furniture: </td>
