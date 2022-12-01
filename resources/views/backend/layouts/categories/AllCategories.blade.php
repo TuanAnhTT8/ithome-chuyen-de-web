@@ -106,7 +106,7 @@
                       <?php
                         $stt = 1;
                     ?>  
-                          {{$id_encode}}
+                        
                           <?php 
                           foreach ($all_categories as $all_categories => $value) {
                    
