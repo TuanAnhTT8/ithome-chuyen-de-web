@@ -16,6 +16,11 @@
     <x-header></x-header>
     <br><br>
     <br><br>
+    @if (session()->has('msg'))
+        <div class="alert alert-success">
+            {{ session()->get('msg') }}
+        </div>
+        @endif
     <div class="container">
         <x-registerform></x-registerform>
     </div>
