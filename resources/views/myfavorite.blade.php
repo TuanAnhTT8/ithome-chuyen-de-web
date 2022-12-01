@@ -18,6 +18,11 @@
     <br><br>
     <br><br>
     <div class="container">
+        @if (session()->has('msg'))
+        <div class="alert alert-success">
+            {{ session()->get('msg') }}
+        </div>
+        @endif
         <div style="padding:10px 0px" class="row">
             <link rel="stylesheet" href="./css/userinfo-style.css">
             <meta name=csrf-token content="{{csrf_token()}}">

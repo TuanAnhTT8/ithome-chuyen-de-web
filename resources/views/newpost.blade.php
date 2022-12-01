@@ -140,7 +140,7 @@
                 </div>
                 <div class="house-stat-item">
                     <div class="bedroom-amount">
-                        <label class="form-label" for="price">Area <span>m<sup>2</sup></span></label>
+                        <label class="form-label" for="price">Area <span>(m<sup>2</sup>)</span></label>
                         <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="area" id="area" class="form-control form-control-lg" require />
                     </div>
                 </div>

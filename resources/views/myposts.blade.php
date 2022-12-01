@@ -18,6 +18,11 @@
     <br><br>
     <br><br>
     <div class="container">
+        @if (session()->has('msg'))
+        <div class="alert alert-success">
+            {{ session()->get('msg') }}
+        </div>
+        @endif
         <div style="padding:10px 0px" class="row">
             <link rel="stylesheet" href="./css/userinfo-style.css">
             <meta name=csrf-token content="{{csrf_token()}}">
@@ -73,16 +78,8 @@
                                                             echo (date('d/m/Y', strtotime($house->created_at)));
                                                         } ?></p>
                                         <a class="update-post" href="{{route('post.updatePost',$house->id)}}"><i class="fas fa-edit"></i></a>
-                                        @if(count($house->likes) != 0)
-                                        <a href="{{route('post.likePost',$house->id)}}" class="favourite">
-                                            @foreach($likes as $like)
-                                                @if($like->house_id == $house->id)
-                                                <i class="fas fa-heart"></i>
-                                                @endif
-                                            @endforeach
-                                        @else
-                                        <a href="{{route('post.likePost',$house->id)}}" class="favourite"><i class="far fa-heart"></i></a>
-                                        @endif
+                                        <a class="remove-post" href="{{route('post.removePost',$house->id)}}"><i class="fas fa-trash-alt"></i></a>
+
                                     </div>
 
                                 </div>

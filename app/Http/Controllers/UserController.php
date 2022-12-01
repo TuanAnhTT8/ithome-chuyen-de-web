@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth; //use thư viện auth
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
+use App\Jobs\SendEmail;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -31,7 +33,7 @@ class UserController extends Controller
         {
             return Redirect::to('/login');
         }
-        return view('user',['user'=> Auth::user(),'date'=> '11']);
+        return view('user',['user'=> Auth::user()]);
     }
     public function logoutAdmin()
     {
@@ -104,19 +106,118 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->name = $request->username;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->role = 2;
-        $user->remember_token = Str::random(60).$request->username;
+        $user->remember_token = Str::random(30).$request->username;
         $user->save();
         
         
        
        
         
-        return Redirect::to('/login')->with([ "message" => "Register Successfully!"]);;
+        return Redirect::to('/login')->with([ "message" => "Register Successfully!"]);
         
      
     }
+    public function getForgot()
+    {
+        
+        if(Auth::check())
+        {
+            return Redirect::to('/');
+        }
+        return view('forgotpassword');
+    }
+    public function postForgot(Request $request)
+    {
+        $email = $request->email;
+
+        $users = User::where('email',$email)->get();
+
+        if(count($users) != 0)
+        {
+            $user = $users->toArray();
+
+       
+            //mã hóa
+            $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            $rand = rand(10000,99999);
+            $size = strlen( $chars );
+            $length = rand(1,30);
+            $str='';
+            for( $i = 0; $i <  $length; $i++ ) {
+              $str .= $chars[ rand( 0, $size - 1 ) ];
+            }
+            $str = substr( str_shuffle( $chars ), 0, $length );
+            $id_security = base64_encode($user[0]['id']).'_'.$rand.'_'.$str;
+            $message = [
+
+                'title' => 'Hi '.$users[0]['username'].'. Click on the link below to start resetpassword ',
+              
+                'link' => 'http://127.0.0.1:8000/resetpassword/?code='.$id_security.'&&type=forgotpassword_'.$chars,
+                'end' => 'Thanks'
+            ];
+            SendEmail::dispatch($message, $users)->delay(now()->addMinute(1));
+    
+            return redirect()->back()->with('msg','Email sent, please check email to resetpassword');
+        }
+        else{
+            return redirect()->back()->with('msg','Email not exist');
+        }
+
+    }
+    public function getResetPassword()
+    {
+        
+        if(Auth::check())
+        {
+            return Redirect::to('/');
+        }
+        if(!isset($_GET['code']))
+        {
+            return redirect()->back()->with('msg','Not allows');
+        }
+        else{
+            $id_base = explode('_',$_GET['code']);
+            $id = base64_decode($id_base[0]);
+            $users = User::find($id);
+           
+            if( $users== null)
+            {
+                return redirect()->back()->with('msg','Not exist user');
+            }
+            else{
+               
+                return view('resetpassword');
+            }
+        }
+    }
+    public function postResetPassword(Request $request)
+    {
+        if(!isset($_GET['code']))
+        {
+            return redirect()->back()->with('msg','Not allows');
+        }
+        else{
+            $id_base = explode('_',$_GET['code']);
+            $id = base64_decode($id_base[0]);
+            $users = User::find($id);
+          
+            if($users == null)
+            {
+                return redirect()->back()->with('msg','Not exist user');
+            }
+            else{
+                $users->password = Hash::make($request->password);
+                $users->save();
+                return Redirect::to('/login')->with(["msg" => "Resetpass Successfully!"]);
+    
+            }
+        }
+       
+    }
+    
+
     
 
     /**
@@ -179,9 +280,32 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'avatarupload.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+            
+        ]);
+        $user = User::find(Auth::id());
+        if($user!=null){
+            $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->email = $request->email;         
+            if ($request->hasfile('avatar')) {
+                $name = Str::random(30) . rand(1, 100) . '.' . $request->file('avatar')->extension();
+                $request->avatar->move(public_path('image'), $name);
+                $user->avatar = $name;
+            }
+            $user->update();
+            return Redirect::to('/user')->with([ "message" => "Your profile has been updated"]);
+        }
+        else{
+            return Redirect::to('/user')->with([ "message" => "This profile is not available"]);
+        }
+        
     }
 
     /**

@@ -1,0 +1,74 @@
+body {
+    background: url(../image/userbanner.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: aliceblue;
+}
+
+.edit-user {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin: 50px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 1px 1px 15px -5px black;
+    transition: all .3s ease;
+}
+
+.avatar-wrapper:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.avatar-wrapper:hover .profile-pic {
+    opacity: .5;
+}
+
+.profile-pic {
+    height: 100%;
+    width: 100%;
+    transition: all .3s ease;
+}
+
+.profile-pic:after {
+    font-family: FontAwesome;
+    content: "\f007";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    font-size: 190px;
+    background: #ecf0f1;
+    color: #203644;
+    text-align: center;
+}
+
+.upload-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.upload-button .fa-arrow-circle-up {
+    position: absolute;
+    font-size: 200px;
+    top: 0;
+    left: 0;
+    text-align: center;
+    opacity: 0;
+    transition: all .3s ease;
+    color: #203644;
+}
+
+.upload-button:hover .fa-arrow-circle-up {
+    opacity: .9;
+}

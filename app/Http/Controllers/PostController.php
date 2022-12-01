@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -194,16 +196,39 @@ class PostController extends Controller
         $img = '';
         if ($request->hasfile('formFiles')) {
             foreach ($request->file('formFiles') as $file) {
-                $name = time() . rand(1, 100) . '.' . $file->extension();
+                $name = Str::random(60) . rand(1, 100) . '.' . $file->extension();
                 $file->move(public_path('image'), $name);
                 $img .= $name . ';';
             }
             $house->img = $img;
-            var_dump(1);
+            //var_dump(1);
         }
-        var_dump($request->hasfile('formFiles'));
+        //var_dump($request->hasfile('formFiles'));
         $house->update();
         return Redirect::to('/posts/' . $house->id);
+    }
+
+    public function removePost($id){
+        if(!Auth::check()){
+            return Redirect::to('/login')->with('msg', 'Login to access the delete your post');
+        }
+        else if(House::find($id)==null){
+            return Redirect::to('/')->with('msg', 'This post is not available');
+        }
+        else if(!House::find($id)->user_id==Auth::id()){
+            return Redirect::to('/')->with('msg', 'You are not allowed to delete this post');
+        }
+        else{            
+            $house = House::find($id);
+            $imgarr = explode(";", $house->img);
+            foreach($imgarr as $img){
+                if($img!=""){
+                    unlink(public_path('image').'/'.$img);
+                }
+            }
+            $house->delete();
+        }
+        return Redirect::to('/myposts')->with('msg', 'Remove successfully');
     }
 
     /**

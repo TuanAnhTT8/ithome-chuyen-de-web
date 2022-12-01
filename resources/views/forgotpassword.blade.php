@@ -22,7 +22,7 @@
         </div>
         @endif
     <div class="container">
-        <x-registerform></x-registerform>
+        <x-forgotpassform></x-forgotpassform>
     </div>
     <x-footer></x-footer>
 </body>
