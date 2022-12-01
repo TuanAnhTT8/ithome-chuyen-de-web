@@ -39,6 +39,7 @@ Route::get('/myposts', [HouseController::class, 'myPosts']);
 Route::get('/myfavorite', [HouseController::class, 'myFavorite']);
 
 Route::get('/user',[UserController::class, 'getUser']);
+Route::post('/user',[UserController::class, 'update'])->name('user.update');
 // Route::get('/user', function () {
 //     return view('user');
 // });
@@ -60,6 +61,7 @@ Route::get('/post',[PostController::class, 'create']);
 Route::post('/post',[PostController::class, 'store'])->name('post.store');
 Route::get('/myposts/updatepost/{id}',[PostController::class, 'updatePost'])->name('post.updatePost');
 Route::post('/myposts/updatepost/{id}',[PostController::class, 'update'])->name('post.update');
+Route::get('/myposts/remove/{id}',[PostController::class, 'removePost'])->name('post.removePost');
 //endlogin
 /*
 ********************************************************************

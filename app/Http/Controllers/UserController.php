@@ -33,7 +33,7 @@ class UserController extends Controller
         {
             return Redirect::to('/login');
         }
-        return view('user',['user'=> Auth::user(),'date'=> '11']);
+        return view('user',['user'=> Auth::user()]);
     }
     public function logoutAdmin()
     {
@@ -108,14 +108,14 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = 2;
-        $user->remember_token = Str::random(60).$request->username;
+        $user->remember_token = Str::random(30).$request->username;
         $user->save();
         
         
        
        
         
-        return Redirect::to('/login')->with([ "message" => "Register Successfully!"]);;
+        return Redirect::to('/login')->with([ "message" => "Register Successfully!"]);
         
      
     }
@@ -280,9 +280,32 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'avatarupload.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+            
+        ]);
+        $user = User::find(Auth::id());
+        if($user!=null){
+            $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->email = $request->email;         
+            if ($request->hasfile('avatar')) {
+                $name = Str::random(30) . rand(1, 100) . '.' . $request->file('avatar')->extension();
+                $request->avatar->move(public_path('image'), $name);
+                $user->avatar = $name;
+            }
+            $user->update();
+            return Redirect::to('/user')->with([ "message" => "Your profile has been updated"]);
+        }
+        else{
+            return Redirect::to('/user')->with([ "message" => "This profile is not available"]);
+        }
+        
     }
 
     /**

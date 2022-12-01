@@ -14,6 +14,8 @@ favourite.forEach(element => {
 });
 
 
+
+
 // const houseitem = document.querySelectorAll('.house-item');
 // houseitem.forEach(element => {
 //     element.addEventListener('click', (e) => {
@@ -25,10 +27,11 @@ var province_select = document.getElementById('province-select');
 var district_select = document.getElementById('district-select');
 var ward_select = document.getElementById('ward-select');
 var street_select = document.getElementById('street-select');
-province_select.addEventListener('change', (e) => {
-    LoadDistricts(province_select.value);
-});
-
+if (province_select != null) {
+    province_select.addEventListener('change', (e) => {
+        LoadDistricts(province_select.value);
+    });
+}
 async function LoadDistricts(id) {
     const url = '/api/district/' + id;
     const response = await fetch(url);
@@ -106,8 +109,25 @@ async function removeLike(id, uid) {
 }
 
 var limit = 10;
+
 var imgList = document.getElementById('preview-list');
 $(document).ready(function() {
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#avatarupload").on('change', function() {
+        readURL(this);
+    });
+
     $('#formFiles').change(function() {
         var files = $(this)[0].files;
         if (files.length > limit) {
@@ -124,6 +144,7 @@ $(document).ready(function() {
             }
         }
     });
+
 });
 
 function clearImage() {

@@ -100,9 +100,6 @@ nav a:hover {
     border-radius: 50%;
     display: flex;
     font-size: 21px;
-}
-
-.update-post {
     text-decoration: none;
 }
 
@@ -113,5 +110,27 @@ nav a:hover {
 }
 
 .update-post i:hover {
-    transform: scale(1.5);
+    transform: scale(1.2);
+}
+
+.remove-post {
+    position: absolute;
+    top: -16px;
+    right: 0;
+    background-color: #f0f2f5;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    font-size: 21px;
+    text-decoration: none;
+}
+
+.remove-post i {
+    color: #eb4432;
+    margin: 0 auto;
+    transition: transform .2s ease;
+}
+
+.remove-post i:hover {
+    transform: scale(1.2);
 }
