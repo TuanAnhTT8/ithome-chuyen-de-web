@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 
 <body>
@@ -19,17 +19,17 @@
     <br><br>
     <br><br>
     <div class="container">
-    @if (session()->has('msg'))
-                <div class="alert alert-success">
-                    {{ session()->get('msg') }}
-                </div>
-                @endif
+        @if (session()->has('msg'))
+        <div class="alert alert-success">
+            {{ session()->get('msg') }}
+        </div>
+        @endif
         <x-search></x-search>
         <div style="padding:10px 0px" class="row">
             <x-category></x-category>
             <x-content :id="$cate_id"></x-content>
-        </div>    
-    </div>   
+        </div>
+    </div>
     <x-footer></x-footer>
     <script src="./js/ajax.js"></script>
 </body>

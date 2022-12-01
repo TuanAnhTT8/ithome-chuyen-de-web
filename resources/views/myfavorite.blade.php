@@ -68,10 +68,10 @@
                                         <p><?php echo (number_format($like->house->price)); ?><span> VND</span></p>
                                     </div>
                                     <div class="upload-time">
-                                        <p>Upload time: <?php if (date('d/m/Y', strtotime($like->house->create_at)) == date('d/m/Y')) {
+                                        <p>Upload time: <?php if (date('d/m/Y', strtotime($like->house->created_at)) == date('d/m/Y')) {
                                                             echo ('Today');
                                                         } else {
-                                                            echo (date('d/m/Y', strtotime($like->house->create_at)));
+                                                            echo (date('d/m/Y', strtotime($like->house->created_at)));
                                                         } ?></p>
                                         <a href="{{route('post.likePost',$like->house->id)}}" class="favourite"><i class="fas fa-heart"></i></a>
                                     </div>

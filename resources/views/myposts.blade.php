@@ -67,13 +67,19 @@
                                         <p><?php echo (number_format($house->price)); ?><span> VND</span></p>
                                     </div>
                                     <div class="upload-time">
-                                        <p>Upload time: <?php if (date('d/m/Y', strtotime($house->create_at)) == date('d/m/Y')) {
+                                        <p>Upload time: <?php if (date('d/m/Y', strtotime($house->created_at)) == date('d/m/Y')) {
                                                             echo ('Today');
                                                         } else {
-                                                            echo (date('d/m/Y', strtotime($house->create_at)));
+                                                            echo (date('d/m/Y', strtotime($house->created_at)));
                                                         } ?></p>
-                                        @if(count($house->likes) == 1)
-                                        <a href="{{route('post.likePost',$house->id)}}" class="favourite"><i class="fas fa-heart"></i></a>
+                                        <a class="update-post" href="{{route('post.updatePost',$house->id)}}"><i class="fas fa-edit"></i></a>
+                                        @if(count($house->likes) != 0)
+                                        <a href="{{route('post.likePost',$house->id)}}" class="favourite">
+                                            @foreach($likes as $like)
+                                                @if($like->house_id == $house->id)
+                                                <i class="fas fa-heart"></i>
+                                                @endif
+                                            @endforeach
                                         @else
                                         <a href="{{route('post.likePost',$house->id)}}" class="favourite"><i class="far fa-heart"></i></a>
                                         @endif

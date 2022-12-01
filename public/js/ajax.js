@@ -30,7 +30,7 @@ province_select.addEventListener('change', (e) => {
 });
 
 async function LoadDistricts(id) {
-    const url = './api/district/' + id;
+    const url = '/api/district/' + id;
     const response = await fetch(url);
     //console.log(response.json());
     const result = await response.json();
@@ -50,7 +50,7 @@ async function LoadDistricts(id) {
 }
 
 async function LoadWards(id) {
-    const url = './api/ward/' + id;
+    const url = '/api/ward/' + id;
     const response = await fetch(url);
     //console.log(response.json());
     const result = await response.json();
@@ -66,7 +66,7 @@ async function LoadWards(id) {
 }
 
 async function LoadStreets(id) {
-    const url = './api/street/' + id;
+    const url = '/api/street/' + id;
     const response = await fetch(url);
     //console.log(response.json());
     const result = await response.json();
@@ -81,7 +81,7 @@ async function LoadStreets(id) {
 
 }
 async function addLike(id, uid) {
-    const url = './api/like/' + id + '-' + uid;
+    const url = '/api/like/' + id + '-' + uid;
     const response = await fetch(url);
     //console.log(response.json());
     const result = await response.json();
@@ -93,7 +93,7 @@ async function addLike(id, uid) {
     }
 }
 async function removeLike(id, uid) {
-    const url = './api/removelike/' + id + '-' + uid;
+    const url = '/api/removelike/' + id + '-' + uid;
     const response = await fetch(url);
     //console.log(response.json());
     const result = await response.json();
@@ -103,4 +103,30 @@ async function removeLike(id, uid) {
     } else if (result == 1) {
         alert('UnLike Success');
     }
+}
+
+var limit = 10;
+var imgList = document.getElementById('preview-list');
+$(document).ready(function() {
+    $('#formFiles').change(function() {
+        var files = $(this)[0].files;
+        if (files.length > limit) {
+            alert("You can select max " + limit + " images.");
+            $('#formFiles').val('');
+            return false;
+        } else {
+            imgList.innerHTML = "";
+            imgList.innerHTML += `<div class="carousel-item active"><img src="` + URL.createObjectURL(files[0]) + `" class="d-block w-100" alt="..."></div>`;
+            if (files.length >= 2) {
+                for (let i = 1; i < files.length; i++) {
+                    imgList.innerHTML += `<div class="carousel-item"><img src="` + URL.createObjectURL(files[i]) + `" class="d-block w-100" alt="..."></div>`;
+                }
+            }
+        }
+    });
+});
+
+function clearImage() {
+    document.getElementById('formFiles').value = null;
+    imgList.innerHTML = "";
 }
