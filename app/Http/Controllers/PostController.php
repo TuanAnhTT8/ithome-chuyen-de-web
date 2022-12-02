@@ -137,7 +137,7 @@ class PostController extends Controller
         $img = '';
         if ($request->hasfile('formFiles')) {
             foreach ($request->file('formFiles') as $file) {
-                $name = time() . rand(1, 100) . '.' . $file->extension();
+                $name = Str::random(30) . rand(1, 100) . '.' . $file->extension();
                 $file->move(public_path('image'), $name);
                 $img .= $name . ';';
             }
@@ -212,9 +212,15 @@ class PostController extends Controller
         $house->address_number = $request->address;
         $house->map = $request->maplocation;
         $img = '';
+        $imgarr = explode(";", $house->img);
+            foreach($imgarr as $img){
+                if($img!=""){
+                    unlink(public_path('image').'/'.$img);
+                }
+            }
         if ($request->hasfile('formFiles')) {
             foreach ($request->file('formFiles') as $file) {
-                $name = Str::random(60) . rand(1, 100) . '.' . $file->extension();
+                $name = Str::random(30) . rand(1, 100) . '.' . $file->extension();
                 $file->move(public_path('image'), $name);
                 $img .= $name . ';';
             }

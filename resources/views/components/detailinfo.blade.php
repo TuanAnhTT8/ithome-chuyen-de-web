@@ -6,7 +6,7 @@
             @foreach($imgarr as $img)
                 @if($img!="")
                 <div class="carousel-item">
-                    <img src="<?php echo(asset('image/'.$img))?>" class="d-block w-100" alt="...">
+                    <img src="<?php echo(asset('image/'.$img))?>" class="d-block w-100 center" alt="...">
                 </div>
                 @endif
             @endforeach
