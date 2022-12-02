@@ -30,7 +30,12 @@
                 <div class="post-author">
                     <div class="basic-info">
                         <div class="avatar">
-                            <img src="./image/avatar.jpg" alt="" class="avt">
+                            <?php
+                            if ($user->avatar == NULL or !file_exists(public_path('image/' . $user->avatar))) {
+                                $user->avatar = "avatar.jpg";
+                            }
+                            ?>
+                            <img src="<?php echo (asset('image/' . $user->avatar)) ?>" alt="" class="avt">
                         </div>
                         <div class="user-name">
                             <p>{{$user->name}}</p>

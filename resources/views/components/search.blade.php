@@ -2,6 +2,7 @@
 <div id="search-bar">
     <form action="">
         <ul class="navbar-nav">
+            <form action="" method="post">
             <li>
                 <input class="form-control mr-sm-2" type="search" placeholder="Key word, Road, Distric,..." aria-label="Search">
             </li>
@@ -78,8 +79,9 @@
             </li>
            
             <li>
-            <input id="filter" class="btn btn-primary" type="submit" value="Filter">
+            <button id="filter" class="btn btn-primary" type="submit" value="Filter">Filter</button>
             </li>
+            </form>
         </ul>
 
     </form>

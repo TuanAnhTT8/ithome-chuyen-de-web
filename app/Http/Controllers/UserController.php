@@ -295,6 +295,9 @@ class UserController extends Controller
             $user->phone = $request->phone;
             $user->email = $request->email;         
             if ($request->hasfile('avatar')) {
+                if($user->avatar!='avatar.jpg' && file_exists(public_path('image').'/'.$user->avatar)){
+                    unlink(public_path('image').'/'.$user->avatar);
+                }
                 $name = Str::random(30) . rand(1, 100) . '.' . $request->file('avatar')->extension();
                 $request->avatar->move(public_path('image'), $name);
                 $user->avatar = $name;
