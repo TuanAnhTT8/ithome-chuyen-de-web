@@ -13,6 +13,11 @@ favourite.forEach(element => {
     })
 });
 
+const _close = document.querySelector('.close');
+_close.addEventListener('click', () => {
+    alert(1);
+});
+
 
 
 

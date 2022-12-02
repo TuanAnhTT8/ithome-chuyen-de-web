@@ -55,11 +55,7 @@
                     <ul class="nav child_menu">
                     <li><a href="{{asset('likes')}}">Danh sách Favorite</a></li>
                       
-                      <!-- <li><a href="{{asset('allmanufactures')}}">Xem tất cả nhà sản xuất</a></li>
-                      <li><a href="{{url('admin/addmanufactures')}}">Thêm hiệu sản xuất</a></li>
-                      <li><a href="{{asset('allprotypes')}}">Xem tất cả loại hàng</a></li>
-                      <li><a href="{{url('admin/addprotypes')}}">Thêm loại hàng</a></li>
-                      <li><a href="{{asset('allusers')}}">Quản lí người dùng</a></li> -->
+                
 
 
                     </ul>
@@ -68,7 +64,15 @@
                 
                   
                   
+                  <li><a><i class="fa fa-sitemap"></i> Quản lí báo cáo <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                  <li><a href="{{asset('reportsadmin')}}">Danh sách báo cáo</a></li>
+     
 
+
+                      </li>
+                  </ul>
+                </li>
 
                 <li><a><i class="fa fa-sitemap"></i> Quản lí người dùng <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
@@ -79,6 +83,7 @@
                       </li>
                   </ul>
                 </li>
+              
                 <!-- <li><a><i class="fa fa-book"></i> Quản lí mua hàng <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                   <li><a href="{{asset('allbills')}}">Danh sách đơn hàng</a></li>

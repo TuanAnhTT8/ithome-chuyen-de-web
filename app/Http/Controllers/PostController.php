@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Str;
-
+use App\Models\Report;
 class PostController extends Controller
 {
     /**
@@ -26,6 +26,24 @@ class PostController extends Controller
     public function index()
     {
         //
+    }
+    public function postreport(Request $request)
+    {
+        if (Auth::check()) {
+            $this->validate($request, [
+                'flexRadioDefault' => 'required',
+                
+            ]);
+            $report = new Report();
+            $report->user_id = Auth::id();
+            $report->house_id =  $request->id_house;
+            $report->content =  $request->flexRadioDefault;
+            $report->active = 0;
+            $report->save();
+            return Redirect::back()->with('msg', 'Report successfully');
+        } else {
+            return Redirect::to('/login')->with('msg', 'Login to access the report house');
+        }
     }
 
     /**

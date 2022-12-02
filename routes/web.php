@@ -62,6 +62,7 @@ Route::post('/post',[PostController::class, 'store'])->name('post.store');
 Route::get('/myposts/updatepost/{id}',[PostController::class, 'updatePost'])->name('post.updatePost');
 Route::post('/myposts/updatepost/{id}',[PostController::class, 'update'])->name('post.update');
 Route::get('/myposts/remove/{id}',[PostController::class, 'removePost'])->name('post.removePost');
+Route::post('/report',[PostController::class, 'postreport']);
 //endlogin
 /*
 ********************************************************************
@@ -89,6 +90,12 @@ Route::group(['module' => 'admin', 'middleware' => 'web', 'namespace' => "App\Ht
         Route::get("/", ["as" => "admin.hotels", "uses" => "AdminController@getAllPost"]);
       
         Route::get("delete/{id}", ["as" => "admin.hotels.edit", "uses" => "AdminController@DeletePost"]);
+        
+    }); 
+    Route::group(["prefix" => "reportsadmin"], function() {
+        Route::get("/", ["as" => "admin.reportsadmin", "uses" => "AdminController@getAllreport"]);
+      
+        Route::get("delete/{id}", ["as" => "admin.hotels.edit", "uses" => "AdminController@DeleteReport"]);
         
     });
     Route::group(["prefix" => "likes"], function() {
