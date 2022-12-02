@@ -116,7 +116,7 @@ Route::group(['module' => 'admin', 'middleware' => 'web', 'namespace' => "App\Ht
         Route::get("/", ["as" => "admin.categories", "uses" => "AdminController@getAllusers"]);
         Route::get("add", ["as" => "admin.categories.add", "uses" => "AdminController@AddCategories"]);
         Route::post("save", ["as" => "admin.categories.add", "uses" => "AdminController@getSaveCategories"]);
-        Route::get("delete/{id}", ["as" => "admin.categories.edit", "uses" => "AdminController@DeleteCategories"]);
+        Route::get("delete/{id}", ["as" => "admin.categories.edit", "uses" => "AdminController@DeleteUser"]);
         Route::get("edit/{id}", ["as" => "admin.categories.edit", "uses" => "AdminController@EditCategories"]);
         Route::post("update/{id}", ["as" => "admin.categories.eidt", "uses" => "AdminController@UpdateCategories"]);
     });

@@ -77,8 +77,7 @@
                 <li><a><i class="fa fa-sitemap"></i> Quản lí người dùng <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                   <li><a href="{{asset('users')}}">Danh sách người dùng</a></li>
-                  <li><a href="{{asset('users/add')}}">Thêm người dùng</a></li>
-
+               
 
                       </li>
                   </ul>

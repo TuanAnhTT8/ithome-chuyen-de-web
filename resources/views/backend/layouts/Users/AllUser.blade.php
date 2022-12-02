@@ -96,6 +96,7 @@
                         <tr>
 
                           <th>Id</th>
+                          <th>Avatar</th>
                           <th>Name</th>
                           <th>Email</th>
 
@@ -127,13 +128,28 @@
 
 
                           <td>{{$user->id}}</td>
+                          <td><img src="./image/{{$user->avatar}}" height="100" width="100" alt=""></td>
                           <td>{{$user->username}}</td>
                           <td>{{$user->email}}</td>
-
+                          <?php 
+                        
+                       
+                          $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                          $rand = rand(10000,99999);
+                          $size = strlen( $chars );
+                          $length = rand(1,30);
+                          $str='';
+                          for( $i = 0; $i <  $length; $i++ ) {
+                            $str .= $chars[ rand( 0, $size - 1 ) ];
+                          }
+                          $str = substr( str_shuffle( $chars ), 0, $length );
+                          $id_security = base64_encode($user['id']).'_'.$rand.'_'.$str;
+                         
+                          ?>
                           <td>
-                            <div class="fa-hover col-md-3 col-sm-4  "><a href="{{URL::to('/users/edit/'.$key.$user->id)}}"><i class="fa fa-wrench"></i></a>
+                            
 
-                              <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="{{URL::to('/users/delete/'.$key.$user->id)}}"><i class="fa fa-trash"></i></a>
+                              <div class="fa-hover col-md-3 col-sm-4  "><a onclick="return comfirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="/users/delete/{{$id_security}}"><i class="fa fa-trash"></i></a>
                               </div>
 
                           </td>

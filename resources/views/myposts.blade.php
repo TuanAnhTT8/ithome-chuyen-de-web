@@ -36,7 +36,7 @@
                             }
                             ?>
                             <img src="<?php echo (asset('image/' . $user->avatar)) ?>" alt="" class="avt">
-                        </div>
+                            </div>
                         <div class="user-name">
                             <p>{{$user->name}}</p>
                             <p>Registered date: <span>{{date('d/m/Y', strtotime($user->created_at))}}</span></p>

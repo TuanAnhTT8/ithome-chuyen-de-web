@@ -85,7 +85,7 @@ class AdminController extends Controller
         $cate = House::find($id);
         $cate->delete();
         
-        return Redirect::to('/posts')->with([ "message" => "Delete Successfully!"]);
+        return Redirect::to('/posts')->with([ "msg" => "Delete Successfully!"]);
     }
     //End post
   // Likes
@@ -119,7 +119,7 @@ class AdminController extends Controller
       $cate = Like::find($id);
       $cate->delete();
       
-      return Redirect::to('/likes')->with([ "message" => "Delete Successfully!"]);
+      return Redirect::to('/likes')->with([ "msg" => "Delete Successfully!"]);
   }
   //End post
 
@@ -165,7 +165,7 @@ class AdminController extends Controller
        
        
         
-        return Redirect::to('/categories')->with([ "message" => "Create Successfully!"]);;
+        return Redirect::to('/categories')->with([ "msg" => "Create Successfully!"]);;
     }
 
     public function EditCategories($id)
@@ -200,7 +200,7 @@ class AdminController extends Controller
         // mã hóa password trước khi đẩy lên DB
         $cate->cate_name = $request->name_categories;
         $cate->save();
-        return Redirect::to('/categories')->with(["message" => "Update Successfully!"]);
+        return Redirect::to('/categories')->with(["msg" => "Update Successfully!"]);
     }
     public function DeleteCategories($id)
     {
@@ -218,22 +218,30 @@ class AdminController extends Controller
         $cate = Category::find($id);
         $cate->delete();
         
-        return Redirect::to('/categories')->with([ "message" => "Delete Successfully!"]);
+        return Redirect::to('/categories')->with([ "msg" => "Delete Successfully!"]);
     }
     //END categories
    //user 
 //Categories
 public function getAllusers()
 {
-    $admin_role = Auth::user()->role;
-    if($admin_role != 1)
-    {
-        return Redirect::to('/');
+    if(Auth::check()){
+        $admin_role = Auth::user()->role;
+    
+        if($admin_role != 1)
+        {
+            return Redirect::to('/');
+        }
+        $user = ModelsUser::all();
+             
+      
+        return view('backend.layouts.Users.AllUser')->with('user', $user);
     }
-    $user = ModelsUser::all();
-         
-  
-    return view('backend.layouts.Users.AllUser')->with('user', $user);
+    else{
+        return Redirect::to('/login')->with([ "msg" => "Cuts!"]);
+    }
+
+   
 
 }
 public function getAllreport()
@@ -265,7 +273,29 @@ public function DeleteReport($id)
     $report = Report::find($id);
     $report->delete();
     
-    return Redirect::to('/reportsadmin')->with([ "message" => "Delete Successfully!"]);
+    return Redirect::to('/reportsadmin')->with([ "msg" => "Delete Successfully!"]);
+}
+
+public function DeleteUser($id)
+{
+
+ 
+    $admin_role = Auth::user()->role;
+    if($admin_role != 1)
+    {
+        return Redirect::to('/');
+    }
+   
+    $id_base = explode('_',$id);
+    $id = base64_decode($id_base[0]);
+    
+    $report = ModelsUser::find($id);
+    if($report->avatar!='avatar.jpg' && file_exists(public_path('image').'/'.$report->avatar)){
+        unlink(public_path('image').'/'.$report->avatar);
+    }
+    $report->delete();
+    
+    return Redirect::to('/users')->with([ "msg" => "Delete Successfully!"]);
 }
 }
    

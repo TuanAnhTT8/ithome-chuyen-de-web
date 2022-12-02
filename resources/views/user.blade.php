@@ -33,10 +33,11 @@
             <div class="mx-5 py-5">
                 <div class="container">
                     <h4 class="text-center pt-5">Account Information</h4>
+
                     <form action="{{route('user.update')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <?php
-                        if ($user->avatar == NULL or !file_exists(public_path('image/'.$user->avatar))) {
+                        if ($user->avatar == NULL or !file_exists(public_path('image/' . $user->avatar))) {
                             $user->avatar = "avatar.jpg";
                         }
                         ?>
@@ -48,12 +49,26 @@
                             <input hidden name="avatar" id="avatarupload" class="form-control" type="file" accept="image/*" />
                         </div>
                         <h5 class="text-center">{{$user->name}}</h5>
+
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <label class="ml-0 form-label" for="name">Name</label>
                         <input type="text" value="{{$user->name}}" id="name" name="name" class="form-control form-control-lg" required />
                         <label class="form-label" for="phone">Phone</label>
                         <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="{{$user->phone}}" id="phone" name="phone" class="form-control form-control-lg" required />
                         <label class="form-label" for="email">Email</label>
                         <input type="email" value="{{$user->email}}" id="email" name="email" class="form-control form-control-lg" required />
+                        <label class="form-label" for="email">New Password</label>
+                        <input type="password" id="newPass" name="newPass" class="form-control form-control-lg"  />
+                        <label class="form-label" for="email">Confirm New Password</label>
+                        <input type="password" id="confPass" name="confPass" class="form-control form-control-lg"  />
                         <button type="submit" class="btn btn-primary mt-2" data-dismiss="modal">Save</button>
                     </form>
                 </div>

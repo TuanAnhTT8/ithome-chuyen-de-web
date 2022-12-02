@@ -94,12 +94,12 @@ class UserController extends Controller
         $check = User::where('email',$arr['email'])->get();                
         if(count($check) > 0)
         {
-            return Redirect::to('/register')->with([ "message" => "Email exist!"]);;
+            return Redirect::to('/register')->with([ "msg" => "Email exist!"]);;
         }
         $check = User::where('username',$arr['username'])->get();                
         if(count($check) > 0)
         {
-            return Redirect::to('/register')->with([ "message" => "Tên người dùng đã tồn tại không thể đăng ký tài khoản!"]);;
+            return Redirect::to('/register')->with([ "msg" => "Tên người dùng đã tồn tại không thể đăng ký tài khoản!"]);;
         }
         
         $user = new User;
@@ -115,7 +115,7 @@ class UserController extends Controller
        
        
         
-        return Redirect::to('/login')->with([ "message" => "Register Successfully!"]);
+        return Redirect::to('/login')->with([ "msg" => "Register Successfully!"]);
         
      
     }
@@ -286,7 +286,9 @@ class UserController extends Controller
             'name' => 'required',
             'phone' => 'required',
             'email' => 'required',
-            'avatarupload.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'avatarupload.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'newPass' => '',
+            'confPass' => 'same:newPass'
             
         ]);
         $user = User::find(Auth::id());
@@ -301,7 +303,12 @@ class UserController extends Controller
                 $name = Str::random(30) . rand(1, 100) . '.' . $request->file('avatar')->extension();
                 $request->avatar->move(public_path('image'), $name);
                 $user->avatar = $name;
+
             }
+            if($request->newPass!=''){
+                $user->password = Hash::make($request->newPass) ;
+            }
+
             $user->update();
             return Redirect::to('/user')->with([ "message" => "Your profile has been updated"]);
         }
