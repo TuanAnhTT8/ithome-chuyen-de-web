@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Str;
-
+use App\Models\Report;
 class PostController extends Controller
 {
     /**
@@ -26,6 +26,24 @@ class PostController extends Controller
     public function index()
     {
         //
+    }
+    public function postreport(Request $request)
+    {
+        if (Auth::check()) {
+            $this->validate($request, [
+                'flexRadioDefault' => 'required',
+                
+            ]);
+            $report = new Report();
+            $report->user_id = Auth::id();
+            $report->house_id =  $request->id_house;
+            $report->content =  $request->flexRadioDefault;
+            $report->active = 0;
+            $report->save();
+            return Redirect::back()->with('msg', 'Report successfully');
+        } else {
+            return Redirect::to('/login')->with('msg', 'Login to access the report house');
+        }
     }
 
     /**
@@ -119,7 +137,7 @@ class PostController extends Controller
         $img = '';
         if ($request->hasfile('formFiles')) {
             foreach ($request->file('formFiles') as $file) {
-                $name = time() . rand(1, 100) . '.' . $file->extension();
+                $name = Str::random(30) . rand(1, 100) . '.' . $file->extension();
                 $file->move(public_path('image'), $name);
                 $img .= $name . ';';
             }
@@ -194,9 +212,15 @@ class PostController extends Controller
         $house->address_number = $request->address;
         $house->map = $request->maplocation;
         $img = '';
+        $imgarr = explode(";", $house->img);
+            foreach($imgarr as $img){
+                if($img!=""){
+                    unlink(public_path('image').'/'.$img);
+                }
+            }
         if ($request->hasfile('formFiles')) {
             foreach ($request->file('formFiles') as $file) {
-                $name = Str::random(60) . rand(1, 100) . '.' . $file->extension();
+                $name = Str::random(30) . rand(1, 100) . '.' . $file->extension();
                 $file->move(public_path('image'), $name);
                 $img .= $name . ';';
             }

@@ -6,7 +6,7 @@
             @foreach($imgarr as $img)
                 @if($img!="")
                 <div class="carousel-item">
-                    <img src="<?php echo(asset('image/'.$img))?>" class="d-block w-100" alt="...">
+                    <img src="<?php echo(asset('image/'.$img))?>" class="d-block w-100 center" alt="...">
                 </div>
                 @endif
             @endforeach
@@ -68,29 +68,33 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <form id="form_report" method="post" action="/report" >
+                    {{ csrf_field() }}
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="This post is scaming">
                         <label class="form-check-label" for="flexRadioDefault1">
                             This post is scaming
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="This post in unreal">
                         <label class="form-check-label" for="flexRadioDefault2">
                             This post in unreal
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="This post is spam">
                         <label class="form-check-label" for="flexRadioDefault3">
                             This post is spam
                         </label>
                     </div>
+                    <input type="hidden" name="id_house" value="{{$house->id}}">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" data-dismiss="modal">Report</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

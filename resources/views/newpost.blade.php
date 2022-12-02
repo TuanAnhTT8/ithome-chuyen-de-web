@@ -25,7 +25,7 @@
         </div>
         @endif
         <h1>New Post</h1>
-        <form method="post" action="{{ route('post.store')}}"enctype="multipart/form-data">
+        <form method="post" action="{{ route('post.store')}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="category-selector">
                 <label class="form-label" for="category-select">Category</label>

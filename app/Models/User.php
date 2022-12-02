@@ -56,6 +56,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+    public function report_house()
+    {
+        return $this->hasMany(Report::class);
+    }
 
     public static function encode($id)
     {

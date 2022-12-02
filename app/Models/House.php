@@ -29,4 +29,8 @@ class House extends Model
     public function likes(){
         return  $this->hasMany(Like::class,'house_id','id');
     }
+    public function report_house()
+    {
+        return $this->hasMany(Report::class);
+    }
 }
